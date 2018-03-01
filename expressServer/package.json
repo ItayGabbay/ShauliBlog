@@ -1,11 +1,6 @@
 {
-  "name": "node-express-mongoose",
-  "description": "A boilerplate application for express mongoose",
+  "name": "shauli-blog-server",
   "version": "1.0.0",
-  "author": {
-    "name": "Madhusudhan Srinivasa",
-    "email": "me@madhums.me"
-  },
   "engines": {
     "node": ">=6.x"
   },
@@ -45,13 +40,5 @@
     "nodemon": "~1.11.0",
     "supertest": "~3.0.0",
     "tape": "~4.7.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/madhums/node-express-mongoose.git"
-  },
-  "keywords": [
-    "mvc",
-    "boilerplate"
-  ]
+  }
 }
