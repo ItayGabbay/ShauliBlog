@@ -1,1 +1,43 @@
-<div>blabla</div>
+
+<div id="mainContent">
+                <table id="modelTable" class="table">
+                    <tr>
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Writer
+                        </th>
+                        <th></th>
+                    </tr>
+                        <tr ng-repeat="post in posts">
+                            <td>
+                                {{post.title}}
+                            </td>
+                            <td>
+                                {{post.writer}}
+                            </td>
+                            <td>
+                                    <div class="col-md-2">
+                                            <input class="btn btn-default" type="submit" name="Edit" value="ערוך" />
+                                        </div>
+                                        <div class="col-md-2">
+                                                <input class="btn btn-default" type="submit" name="Details" value="פרטים" />
+                                            </div>
+                                            <div class="col-md-2">
+                                                    <input class="btn btn-default" type="submit" name="Delete" value="מחק" />
+                                                </div>
+                                                <div class="col-md-2">
+                                                        <input class="btn btn-default" type="submit" name="Manage" value="נהל תגובות" />
+                                                    </div>
+                            </td>
+                        </tr>
+                </table>
+        <div id="postStatsSection">
+            <h3>Most viewed posts</h3>
+        </div>
+    
+        <div id="barChartSection">
+            <h3>Top Writers</h3>
+        </div>
+    </div>

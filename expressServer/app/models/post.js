@@ -11,6 +11,7 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema(
 	{
+		_id: {type: Schema.Types.ObjectId, default : ""},
 		title: { type: String, default: "" },
 		writer: { type: String, default: "" },
 		writerWebsiteUrl: { type: String, default: "" },

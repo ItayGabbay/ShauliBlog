@@ -12,25 +12,24 @@ $routeProvider
             templateUrl: 'views/paint.html',
             controller: 'PaintCtrl'
         })
-        // .otherwise({
-        //     templateUrl:'views/blog.html'
-        //     //controller: 'BlogCtrl'
-        // })
-
+        
     $locationProvider
         .html5Mode(false)
         .hashPrefix('');
 });
 
-shauli.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
-    //Init of the blog controller, we get all the posts
+shauli.controller('BlogCtrl', ['$scope', '$http', 
+function($scope, $http) {
     $scope.posts = [];
     $http.get("post/").then(function(res) {
         $scope.posts = res.data;
+        console.log("gal", $scope.posts);
     }, function(err) {
         console.log(err);
     })
 }])
+
+
 
 shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     
