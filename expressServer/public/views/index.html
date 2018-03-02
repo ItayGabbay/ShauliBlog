@@ -13,7 +13,7 @@
     <!-- load Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-route.min.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="/js/app.js"></script>    
     <title>Shauli</title>
     <link href="css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/bootstrap/bootstrap-theme.css" rel="stylesheet" type="text/css" media="all" />
@@ -27,21 +27,13 @@
     <nav class="navbar navbar-inverse">
         <!-- Navigation -->
         <ul class="nav navbar-nav">
-            <li class="@(ViewBag.Selected == "Blog" ? "active": string.Empty)"><a href="#/blog">Blog</a></li>
+            <li><a href="#/blog">Blog</a></li>
             <li><a href="#">About</a></li>
-            <li class="@(ViewBag.Selected == "Fan" ? "active": string.Empty)">@Html.ActionLink("Fan Club", "Index", "Fan")</li>
+            <li><a href="#/fanclub">Fan Club</a></li>
             <li><a href="#">Contact</a></li>
-            <li class="@(ViewBag.Selected == "Manage" ? "active" : string.Empty)">@Html.ActionLink("Manage", "Index", "Post")</li>
-            <li class="@(ViewBag.Selected == "Paint" ? "active" : string.Empty)">@Html.ActionLink("Paint", "Index", "Paint")</li>
-            <li class="@(ViewBag.Selected == "Facebook" ? "active" : string.Empty)">@Html.ActionLink("Facebook", "Index", "Facebook")</li>
-            <li>
-                <div id="transDemo2">
-                    <div class="hover">
-                        <!-- <img src="http://www.ashlylorenzana.com/wp-content/uploads/2013/12/12065637851779660844SRD_RSS_Logo.svg_.hi_.png"> -->
-                    </div>
-                    <a href="#">Subscribe via. RSS</a>
-                </div>
-            </li>
+            <li><a href="#/admin">Manage</a></li>
+            <li><a href="#/paint">Paint</a></li>
+            <li><a href="#/facebook">Share With FB</a></li>
         </ul>
     </nav>
     <section id="intro">
@@ -87,7 +79,9 @@
                 </ul>
             </section>
         </aside>
-        <div class=body-container ng-view>
+        <div style="display:table-cell">
+            <ng-view>
+            </ng-view>
         </div>
     </div>
     <footer>
@@ -122,8 +116,8 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src='js/jquery-1.10.2.js'></script>
-    <script src='js/bootstrap.js'></script>
+    <script src='js/3rdParty/jquery-1.10.2.js'></script>
+    <script src='js/3rdParty/bootstrap.js'></script>
     <script src='js/Weather/Weather.js' type="text/javascript"></script>
     <script src='js/layout.js'></script>
 </body>
