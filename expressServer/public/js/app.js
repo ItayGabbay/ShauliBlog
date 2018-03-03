@@ -12,6 +12,14 @@ $routeProvider
             templateUrl: 'views/paint.html',
             controller: 'PaintCtrl'
         })
+        .when('/facebook', {
+            templateUrl: 'views/fb.html',
+            controller: 'FBController'
+        })
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl'
+        })
         
     $locationProvider
         .html5Mode(false)

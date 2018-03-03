@@ -7,6 +7,7 @@
 const home = require("../app/controllers/home");
 const post = require("../app/controllers/post");
 const comment = require("../app/controllers/comment");
+const user = require("../app/controllers/user")
 
 /**
  * Expose
@@ -27,6 +28,7 @@ module.exports = function(app, passport) {
   app.put("/comment/:id", comment.update);
   app.delete("/comment/:id", comment.delete);
 
+  app.post("/login/", user.login);
   /**
    * Error handling
    */
