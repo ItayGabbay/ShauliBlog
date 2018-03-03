@@ -6,7 +6,7 @@ shauli.config(function ($routeProvider, $locationProvider) {
 $routeProvider
         .when('/', {
             templateUrl: 'views/blog.html',
-            controller: 'BlogCtrl'
+            controller: 'BlogController'
         })
         .when('/paint', {
             templateUrl: 'views/paint.html',
@@ -26,18 +26,35 @@ $routeProvider
         .hashPrefix('');
 });
 
-shauli.controller('BlogCtrl', ['$scope', '$http', 
-function($scope, $http) {
-    $scope.posts = [];
-    $http.get("post/").then(function(res) {
+shauli.controller('BlogController', ['$scope', '$http', function($scope, $http) {
+
+$scope.getPosts = function() {
+    $http({
+        url:"post/",
+        method: "GET",
+        params: {
+            "startDate": $scope.startDate,
+            "endDate" : $scope.endDate,
+            "postTitle" : $scope.searchedtitle,
+            "postWriter": $scope.searchedwriter,
+            "postWriterWebsiteURL" : $scope.searchedWebsiteUrl,
+            "wordsInPost" : $scope.searchedcontent
+        }  
+    }).then(function(res) {
         $scope.posts = res.data;
-        console.log("gal", $scope.posts);
-    }, function(err) {
-        console.log(err);
-    })
+    }, function (error) {
+        console.log(res)
+    });
+}
+
+$scope.getPostDetails = function(post) {
+    $scope.editedPost = post;
+    console.log("post", editedPost);
+};
+
+$scope.getPosts();
+    
 }])
-
-
 
 shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout) {
     

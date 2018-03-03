@@ -5,30 +5,31 @@
                                         <form class="form-horizontal" role="form">
                                           <div class="form-group col-md-6">
                                                 <label>Start Date</label>
-                                                 <input type="date" name="StartDate" />
+                                                 <input type="date" name="StartDate" ng-model="startDate"/>
                                           </div>
                                           <div class="form-group col-md-6">
                                                 <label>End Date</label>
-                                                 <input type="date" name="EndDate" />
+                                                 <input type="date" name="EndDate" ng-model="endDate"/>
                                           </div>
                                           <div class="form-group col-md-6">
                                             <label for="contain">Post Writer</label>
-                                            <input class="form-control" type="text" name="PostWriter"/>
+                                            <input class="form-control" type="text" ng-model="searchedwriter" name="PostWriter"/>
                                           </div>
                                           <div class="form-group col-md-6">
                                             <label for="contain">Title</label>
-                                            <input class="form-control" type="text" name="PostTitle"/>
+                                            <input class="form-control" ng-model="searchedtitle" type="text" name="PostTitle"/>
                                           </div>
                                           <div class="form-group col-md-6">
                                                 <label for="contain">Post content</label>
-                                                <input class="form-control" type="text" name="PostContent"/>
+                                                <input class="form-control" ng-model="searchedcontent" type="text" name="PostContent"/>
                                          </div>
                                         <div class="form-group col-md-6">
                                                 <label for="contain">Writer website URL</label>
-                                                <input class="form-control" type="text" name="PostWriterWebsiteURL"/>
+                                                <input class="form-control" type="text" ng-model="searchedwriterWebsiteUrl" name="PostWriterWebsiteURL"/>
                                         </div>
-                                        <button type="button" class="btn btn-primary">Search</button>
-                                        </form>
+                                        <button type="button" class="btn btn-primary" ng-click="getPosts()">Search
+                                        </button>
+                                         </form>
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +41,7 @@
         <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col"></th>
                     <th scope="col">Post Title</th>
                     <th scope="col">Posted on</th>
                     <th scope="col">By</th>
@@ -49,7 +50,9 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat="post in posts | filter:searchText">
-                    <th scope="row"></th>
+                    <td scope="row">
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click=getPostDetails(post)>Details</button>
+                    </td>
                     <td>{{post.title}}</td>
                     <td>{{post.publishDate}}</td>
                     <td>{{post.writer}}</td>
@@ -60,3 +63,49 @@
 </div>
 
 
+<!-- Modal -->
+<div class="modal fade" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeButton" ng-click="closeAndReset(post)"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Post Details</h4>
+        </div>
+        <div class="modal-body">
+          <form ng-submit="insertPost()" name="bussForm">
+            <fieldset class="form-group">
+              <label for="name">Title</label>
+              <input type="text" class="form-control" id="name" ng-model="editedPost.title">
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="name">Writer</label>
+                <input type="text" class="form-control" id="name" ng-model="editedPost.writer">
+              </fieldset>
+              <fieldset class="form-group">
+                  <label for="name">Publish Date</label>
+                  <input  type="date" class="form-control" id="name" ng-model="editedPost.publishDate">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="name">Content</label>
+                    <input type="text" class="form-control" id="name" ng-model="editedPost.content">
+                  </fieldset>
+            <fieldset class="form-group">
+              <label for="file">הכנס תמונה</label><br>
+              <label class="file">
+                <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+                <span class="file-custom" id="choseFile"></span>
+              </label>
+              <div>
+                  <img ng-src="{{imageSrc}}" id="chosen-image-preview"> 
+              </div>
+            </fieldset>     
+            </fieldset>      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset(post)">סגור</button>
+          <input type="submit" class="btn btn-primary" placeholder="שמור">
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
