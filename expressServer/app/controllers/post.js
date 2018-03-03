@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 const Post = mongoose.model("Post");
-
+var PostStat = require("./poststat")
 //=============================
 // List
 //=============================
@@ -56,11 +56,10 @@ exports.show = function(req, res) {
 
   Post.findOne({ _id: id }).populate("comments").exec(function(err, post) {
     if (err) throw err;
-
+    PostStat.addViewToPost(post._id);
     res.send(post);
   });
 };
-
 //=============================
 // Create
 //=============================

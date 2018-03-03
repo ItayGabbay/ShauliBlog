@@ -10,6 +10,9 @@ exports.login = function(req, res) {
         console.log(user);
         
         if (user) {
+            var randomNumber=Math.random().toString();
+            randomNumber=randomNumber.substring(2,randomNumber.length);
+            res.cookie('admin',randomNumber + "" + user._id, { maxAge: 900000, httpOnly: true });
             res.sendStatus(200);
         }
         else {
