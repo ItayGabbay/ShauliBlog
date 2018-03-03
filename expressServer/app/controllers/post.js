@@ -64,6 +64,7 @@ exports.show = function(req, res) {
 // Create
 //=============================
 exports.create = function(req, res) {
+  console.log('create post',req);
   new Post(req.body).save(function(err, post) {
     if (err) throw err;
 

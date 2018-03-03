@@ -24,7 +24,24 @@ $scope.getPosts = function() {
 }
 
 $scope.getPostDetails = function(post) {
+    $scope.isDisable = true;
     $scope.editedPost = post;
+};
+
+$scope.closeAndReset = function() {
+    $scope.isDisable = false;
+    $scope.editedPost = {};
+}
+
+$scope.addPost = function() {
+    $scope.isDisable = false;
+
+    $http.post("post/", $scope.editedPost)
+    .then(function(res) {
+        $scope.posts = res.data;
+    }, function (error) {
+        console.log(error)
+    });
 };
 
 $scope.getPosts();
