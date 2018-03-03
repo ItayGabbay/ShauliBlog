@@ -22,7 +22,7 @@ $routeProvider
         })
         .when('/blog', {
             templateUrl: 'views/blog.html',
-            controller: 'BlogCtrl'
+            controller: 'BlogController'
         })
         .when('/admin', {
             templateUrl: 'views/admin.html', 

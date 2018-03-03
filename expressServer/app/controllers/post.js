@@ -98,11 +98,22 @@ exports.delete = function(req, res) {
 };
 
 exports.getTopPosts = function(req, res) {
-  res.send(200);
+  PostStat.getTopPosts(function(data) {
+    res.send(data);
+  })
+}
 
-  //PostStat.getTopPosts(function(data) {
-    //res.send(data);
-  //})
+exports.getPostsCountByWriter = function(req, res) {
+  Post.aggregate([{"$group": {
+    '_id': '$writer', 'count': { '$sum': 1 }
+  }}], function(err, results) {
+    if (err) throw err;
+    res.send(results);
+  })
+}
+
+exports.getPostStats = function(req, res) {
+
 }
 // //=============================
 // // Search

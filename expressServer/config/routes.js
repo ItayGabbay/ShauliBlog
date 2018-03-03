@@ -17,11 +17,16 @@ module.exports = function(app, passport) {
   app.get("/", home.index);
 
   app.get("/post/", post.index);
+  app.get("/post/getTopPosts", post.getTopPosts);
+  app.get("/post/getPostsCountByWriter", post.getPostsCountByWriter)
+  app.get("/post/getPostStats", post.getPostStats) 
   app.get("/post/:id", post.show);
   app.post("/post/", post.create);
   app.put("/post/:id", post.update);
   app.delete("/post/:id", post.delete);
   app.get("/post/getTopPosts", post.getTopPosts);
+  app.get("/post/getPostsCountByWriter", post.getPostsCountByWriter)
+  app.get("/post/getPostStats", post.getPostStats)  
 
   app.get("/comment/", comment.index);
   app.get("/comment/:id", comment.show);

@@ -1,0 +1,35 @@
+<div id="mainContent">
+    <section>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Post Title</th>
+                <th scope="col">Posted on</th>
+                <th scope="col">By</th>
+                <th scope="col">Comments count</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="post in posts">
+                <td scope="row">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click=editPost(post)>Edit</button> 
+                <button class="btn btn-primary" ng-click=deletePost(post)>Delete</button>              
+                </td>
+                <td>{{post.title}}</td>
+                <td>{{post.publishDate}}</td>
+                <td>{{post.writer}}</td>
+                <td>{{post.comments.count()}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div id="postStatsSection">
+        <h3>Most viewed posts</h3>
+    </div>
+
+    <div id="barChartSection">
+        <h3>Top Writers</h3>
+    </div>
+</div>
