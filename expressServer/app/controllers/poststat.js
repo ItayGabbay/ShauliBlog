@@ -20,3 +20,11 @@ exports.addViewToPost = function(postId) {
         }
     })
 }
+
+exports.getTopPosts = function(callback) {
+    PostStat.aggregate([{$sort: {counter: -1}}, {$limit: 3}]).then(function(res) {
+        callback(res);
+    }, function(err) {
+        if (err) throw err;
+    });
+}

@@ -1,5 +1,5 @@
 ﻿function getTopPosts() {
-    $.ajax('/Post/GetTopPosts').then(function (data) {
+    $.ajax('/post/GetTopPosts').then(function (data) {
         var topPostsSection = $('#topPosts');
 
         for (var post of data) {

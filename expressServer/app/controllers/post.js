@@ -97,6 +97,13 @@ exports.delete = function(req, res) {
   });
 };
 
+exports.getTopPosts = function(req, res) {
+  res.send(200);
+
+  //PostStat.getTopPosts(function(data) {
+    //res.send(data);
+  //})
+}
 // //=============================
 // // Search
 // //=============================

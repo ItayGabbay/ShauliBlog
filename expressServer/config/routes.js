@@ -21,6 +21,7 @@ module.exports = function(app, passport) {
   app.post("/post/", post.create);
   app.put("/post/:id", post.update);
   app.delete("/post/:id", post.delete);
+  app.get("/post/getTopPosts", post.getTopPosts);
 
   app.get("/comment/", comment.index);
   app.get("/comment/:id", comment.show);
