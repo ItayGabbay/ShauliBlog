@@ -3,25 +3,16 @@
  */
 
 var mongoose = require("mongoose");
-var userPlugin = require("mongoose-user");
 var Schema = mongoose.Schema;
 
 /**
  * User schema
  */
 
-var UserSchema = new Schema({
-	name: { type: String, default: "" },
-	email: { type: String, default: "" },
-	hashed_password: { type: String, default: "" },
-	salt: { type: String, default: "" }
+const UserSchema = new Schema({
+	username: { type: String, default: "" },
+	password: {type: String, default: "" }
 });
-
-/**
- * User plugin
- */
-
-UserSchema.plugin(userPlugin, {});
 
 /**
  * Add your
