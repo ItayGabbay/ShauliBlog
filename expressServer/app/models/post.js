@@ -18,7 +18,6 @@ const PostSchema = new Schema(
 		publishDate: { type: Date, default: new Date() },
 		content: { type: String, default: "" },
 		image: { type: String, default: "" },
-		video: { type: String, default: "" },
 		comments: {
 			type: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
 			default: []
