@@ -25,7 +25,6 @@ $scope.getPosts = function() {
 
 $scope.getPostDetails = function(post) {
     $scope.editedPost = post;
-    console.log("post", editedPost);
 };
 
 $scope.getPosts();

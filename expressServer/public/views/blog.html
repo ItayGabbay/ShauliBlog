@@ -45,7 +45,7 @@
               <th scope="col">Post Title</th>
               <th scope="col">Posted on</th>
               <th scope="col">By</th>
-              <th scope="col">Comments count</th>
+              <th scope="col">post content</th>
             </tr>
           </thead>
           <tbody>
@@ -56,7 +56,7 @@
               <td>{{post.title}}</td>
               <td>{{post.publishDate}}</td>
               <td>{{post.writer}}</td>
-              <td>{{post.comments.count()}}</td>
+              <td>{{post.content}}</td>
             </tr>
           </tbody>
         </table>
@@ -64,7 +64,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -75,34 +75,45 @@
           <form ng-submit="insertPost()" name="bussForm">
             <fieldset class="form-group">
               <label for="name">Title</label>
-              <input type="text" class="form-control" id="name" ng-model="editedPost.title">
+              <input type="text" class="form-control" id="name" ng-model="editedPost.title" disabled>
             </fieldset>
             <fieldset class="form-group">
                 <label for="name">Writer</label>
-                <input type="text" class="form-control" id="name" ng-model="editedPost.writer">
+                <input type="text" class="form-control" id="name" ng-model="editedPost.writer" disabled>
               </fieldset>
               <fieldset class="form-group">
                   <label for="name">Publish Date</label>
-                  <input  type="date" class="form-control" id="name" ng-model="editedPost.publishDate">
+                  <input  type="date" class="form-control" id="name" ng-model="editedPost.publishDate" disabled>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="name">Content</label>
-                    <input type="text" class="form-control" id="name" ng-model="editedPost.content">
+                    <input type="text" class="form-control" id="name" ng-model="editedPost.content" disabled>
                   </fieldset>
-            <fieldset class="form-group">
-              <label for="file">הכנס תמונה</label><br>
-              <label class="file">
-                <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
-                <span class="file-custom" id="choseFile"></span>
-              </label>
-              <div>
-                  <img ng-src="{{imageSrc}}" id="chosen-image-preview"> 
-              </div>
-            </fieldset>     
-            </fieldset>      
+                  <fieldset class="form-group">
+                      <label for="name">Post Comments</label>
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">Title</th>
+                          <th scope="col">posted by</th>
+                          <th scope="col">writer webSiteURL</th>
+                          <th scope="col">content</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="comment in editedPost.comments">
+                          
+                          <td>{{comment.title}}</td>
+                          <td>{{comment.writer}}</td>
+                          <td>{{comment.writerWebsiteUrl}}</td>
+                          <td>{{comment.content}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </fieldset>
+                  </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset(post)">סגור</button>
-          <input type="submit" class="btn btn-primary" placeholder="שמור">
         </div>
         </form>
         </div>
