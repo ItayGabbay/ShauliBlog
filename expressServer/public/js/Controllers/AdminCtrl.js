@@ -2,12 +2,17 @@
 
 var shauli = angular.module('shauli');
 
-shauli.controller('AdminCtrl', ['$scope', '$http', function($scope, $http) {
+shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.getAllPosts = function() {
-        $http.get('post/').then(function(res) {
+        $http.get('admin/').then(function(res) {
             $scope.posts = res.data;
         }, function(err) {
-            console.log(err);
+            if (err.status == 401) {
+                $window.location.href = '#/login';
+            }
+            else {
+                console.log(err);
+            }
         });
     }
     $scope.editPost = function(post) {

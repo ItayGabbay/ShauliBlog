@@ -10,4 +10,4 @@
     });
 }
 
-//getTopPosts();
+getTopPosts();

@@ -17,6 +17,7 @@ module.exports = function(app, passport) {
   app.get("/", home.index);
 
   app.get("/post/", post.index);
+  app.get("/admin", post.admin)
   app.get("/post/getTopPosts", post.getTopPosts);
   app.get("/post/getPostsCountByWriter", post.getPostsCountByWriter)
   app.get("/post/getPostStats", post.getPostStats) 
