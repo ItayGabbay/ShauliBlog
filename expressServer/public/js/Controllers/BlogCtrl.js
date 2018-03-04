@@ -39,6 +39,7 @@ $scope.addPost = function() {
     $http.post("post/", $scope.editedPost)
     .then(function(res) {
         $scope.posts = res.data;
+        $scope.getPosts();
     }, function (error) {
         console.log(error)
     });
