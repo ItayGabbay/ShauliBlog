@@ -28,7 +28,10 @@ $routeProvider
             templateUrl: 'views/admin.html', 
             controller: 'AdminCtrl'
         })
-        
+        .when('/fanclub', {
+            templateUrl: 'views/fans.html', 
+            controller: 'FanclubCtrl'
+        })
     $locationProvider
         .html5Mode(false)
         .hashPrefix('');

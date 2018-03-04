@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <div class="form-group col-md-6">
+                    <label>first name</label>
+                    <input type="text" ng-model="fanFirstName" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>last name</label>
+                    <input type="text" ng-model="fanLastName" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>adress</label>
+                    <input type="text" ng-model="fanAddress" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>birdthay</label>
+                    <input type="date" ng-model="fanBirthday" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label>gender</label>
+                    <input type="radio" ng-model="fanGender" value="male" />male
+                    <input type="radio" ng-model="fanGender" value="female" />female
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary" ng-click="getFans() ">search</button>
+                </div>
+                <div class="col-md-6 ">
+                    <button class="btn btn-secondary" ng-click="createFan() ">create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-12 ">
+            <div ng-if="Model.length ">
+                <table class="table ">
+                    <tr>
+                        <th>
+                            first name
+                        </th>
+                        <th>
+                            last name
+                        </th>
+                        <th>
+                            gender
+                        </th>
+                        <th>
+                            date of birth
+                        </th>
+                        <th>
+                            years of seniority
+                        </th>
+                        <th>
+                            address
+                        </th>
+                        <th></th>
+                    </tr>
+                    <tr ng-repeat="item in fans ">
+                        <td>
+                            {{ item.FirstName }}
+                        </td>
+                        <td>
+                            {{ item.LastName }}
+                        </td>
+                        <td>
+                            {{ item.Gender }}
+                        </td>
+                        <td>
+                            {{ item.DateOfBirth }}
+                        </td>
+                        <td>
+                            {{item.YearsOfSeniority}}
+                        </td>
+                        <td>
+                            {{ item.Address }}
+                        </td>
+                        <td>
+                            <a ng-href="#/fanclub/edit/{{item.id}} ">Edit</a>|
+                            <a ng-href="#/fanclub/details/{{item.id}} ">Details</a>|
+                            <a ng-href="#/fanclub/delete/{{item.id}} ">Delete</a>|
+                            <a ng-href="#/fanclub/find post/{{item.id}} ">Find Post</a>|
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
