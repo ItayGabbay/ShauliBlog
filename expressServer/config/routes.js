@@ -38,6 +38,11 @@ module.exports = function(app, passport) {
 
   app.get("/fans/", fan.getAll);
   app.get("/fans/:id", fan.getFanById);
+  app.get("/fans/:id/posts", fan.getPostsByFanId);  
+  app.post("/fans/", fan.create);
+  app.put("/fans/:id", fan.update);
+  app.delete("/fans/:id", fan.delete);
+  
 
   app.post("/login/", user.login);
   /**

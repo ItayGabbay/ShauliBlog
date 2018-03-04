@@ -1,6 +1,7 @@
 var _ = require('lodash');
 const mongoose = require("mongoose");
 const Fans = mongoose.model("Fans");
+const Posts = mongoose.model("Post")
 
 exports.getAll = function(req, res) {
 	Fans.find({}, function(err, fans) {
@@ -12,7 +13,7 @@ exports.getAll = function(req, res) {
 }
 
 exports.getFanById = function(req, res) {
-	Fans.findOne({_id: req.body.fanId}, function (err, fan) {
+	Fans.findOne({_id: req.params.id}, function (err, fan) {
 		if (err) {
 			throw err;
 		}
@@ -24,5 +25,72 @@ exports.getFanById = function(req, res) {
 		}
 	});
 }
+
+exports.getPostsByFanId = function (req, res) {
+	Posts.find({writer._id: req.params.id}, function (err, res) {
+		if (err) {
+			throw err;
+		}
+
+		res.send(fan);
+	});
+}
+
+exports.create = function (req, res) {
+	new Fans(req.body).save(function (err, fan) {
+		if (err) throw err;
+		res.send(fan);
+	});
+}
+
+exports.search = function (req, res) {
+	let fan = req.body;
+	let query = {};
+	if (fan.firstName) {
+		query.firstName = fan.firstName;
+	}
+
+	if (fan.lastName) {
+		query.lastName = fan.lastName;
+	}
+
+	if (fan.dateOfBirth) {
+		query.dateOfBirth = new Date(fan.dateOfBirth);
+	}
+
+	if (fan.gender) {
+		query.gender = fan.gender;
+	}
+
+	if (fan.address) {
+		query.address = fan.address;
+	}
+
+	Fans.find(query, function (err, res) {
+		if (err) throw err;
+
+		res.send(res);
+	})
+}
+
+exports.edit = function (req, res) {
+	var id = req.params.id;
+
+	Fans.findOneAndUpdate({ _id: id }, req.body, function(err, fan) {
+		if (err) throw err;
+
+		res.send(fan);
+	});
+}
+
+exports.delete = function(req, res) {
+	var id = req.params.id;
+  
+	Fans.remove({ _id: id }, function(err) {
+	  if (err) throw err;
+  
+	  res.send(200);
+	});
+  };
 
 
