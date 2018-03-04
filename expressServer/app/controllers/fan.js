@@ -27,13 +27,20 @@ exports.getFanById = function(req, res) {
 }
 
 exports.getPostsByFanId = function (req, res) {
-	Posts.find({writer._id: req.params.id}, function (err, res) {
-		if (err) {
-			throw err;
-		}
 
-		res.send(fan);
-	});
+	// Fans.find({_id:req.params.id} ,function (err, fan)) {
+	// 	if (err) throw err;
+	// 	if (_.isEmpty()) 
+	// }
+	// Posts.find({"writer._id": }, function (err, res) {
+	// 	if (err) {
+	// 		throw err;
+	// 	}
+
+	// 	res.send(fan);
+	// });
+
+res.sendStatus(403);
 }
 
 exports.create = function (req, res) {

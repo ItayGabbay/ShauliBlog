@@ -40,7 +40,7 @@ module.exports = function(app, passport) {
   app.get("/fans/:id", fan.getFanById);
   app.get("/fans/:id/posts", fan.getPostsByFanId);  
   app.post("/fans/", fan.create);
-  app.put("/fans/:id", fan.update);
+  app.put("/fans/:id", fan.edit);
   app.delete("/fans/:id", fan.delete);
   
 
