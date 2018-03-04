@@ -8,6 +8,7 @@ const home = require("../app/controllers/home");
 const post = require("../app/controllers/post");
 const comment = require("../app/controllers/comment");
 const user = require("../app/controllers/user")
+const fan = require("../app/controllers/fan")
 
 /**
  * Expose
@@ -33,6 +34,9 @@ module.exports = function(app, passport) {
   app.post("/comment/", comment.create);
   app.put("/comment/:id", comment.update);
   app.delete("/comment/:id", comment.delete);
+
+  app.get("/fans/", fan.getAll);
+  app.get("/fans/:id", fan.getFanById);
 
   app.post("/login/", user.login);
   /**
