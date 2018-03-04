@@ -41,7 +41,7 @@ module.exports = function(app, passport) {
 
   app.use(function(err, req, res, next) {
     // treat as 404
-    if (
+    if (false &&
       err.message &&
       (~err.message.indexOf("not found") ||
         ~err.message.indexOf("Cast to ObjectId failed"))
