@@ -249,6 +249,11 @@ aside section {
 /*------------------------------
 =BLOG POST
 ------------------------------*/
+.blog-container{
+	padding: 20px 0 0 25px;
+	margin-bottom: 30px;
+}
+
 .blogPost {
 	font-family: 'Lobster';
 }
