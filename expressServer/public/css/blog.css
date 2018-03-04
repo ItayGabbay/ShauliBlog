@@ -297,18 +297,18 @@ aside section {
 =COMMENTS
 ------------------------------*/
 
-#comments {
+.comments {
 	margin-top: 21px;
 	padding-top: 22px;
 	border-top: 1px solid #d7d7d7;
 }
 
-	#comments article {
+	.comments article {
 		display: table;
 		padding: 22px;
 	}
 	
-	#comments article:nth-child(odd) {
+	.comments article:nth-child(odd) {
 		padding: 21px;
 		background: #E3E3E3;
 		border: 1px solid #d7d7d7;
@@ -316,25 +316,33 @@ aside section {
 		-webkit-border-radius: 11px;
 	}
 	
-		#comments article header {
+		.comments article header {
 			display: table-cell;
 			width: 220px;
 			padding-right: 22px;
 		}
 		
-			#comments article header a {
+			.comments article header a {
 				display: block;
 				font-weight: bold;
 				color: #000;
 			}
 			
-				#comments article header a:hover {
+				.comments article header a:hover {
 					text-decoration: none;
 				}
 		
-		#comments article p {
+		.comments article p {
 			padding: 0;
 		}
+#addComment{
+	padding-top: 0;
+	margin-top: 0;
+}
+
+#add-comment-action-label {
+	cursor: pointer;
+}
 
 /*------------------------------
 =COMMENT FORM

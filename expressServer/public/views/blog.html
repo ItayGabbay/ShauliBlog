@@ -63,8 +63,9 @@
                    <span ng-if=post.image>
                       <img src="{{post.image}}" />
                    </span>
+                   <a ng-click="addPostComment(post)">add a comment</a>
                 </div>
-                <section id="comments" ng-show="post._id == expandedPost">
+                <section class="comments" ng-show="post._id == expandedPost">
                   <h3>Comments</h3>
                   <article ng-repeat="comment in post.comments">
                       <dl class="dl-horizontal">
@@ -99,6 +100,40 @@
                           </dd>
                       </dl>
                   </article>
+            </section>
+            <section id="addComment" class="comments" ng-show="post._id == addCommentToPost">          
+              <article>
+                  <dl class="dl-horizontal">
+                      <dt>
+                          Title
+                      </dt>
+                      <dd>
+                          <input type="text" ng-model="addComment.title">
+                      </dd>
+
+                      <dt>
+                          Writer
+                      </dt>
+                      <dd>
+                          <input type="text" ng-model="addComment.writer">
+                      </dd>
+
+                      <dt>
+                          Content
+                      </dt>
+                      <dd>
+                          <input type="text" ng-model="addComment.content">
+                      </dd>
+
+                      <dt>
+                          Writer Website URL
+                      </dt>
+                      <dd>
+                          <input type="text" ng-model="addComment.writerWebsiteUrl">
+                      </dd>
+                  </dl>
+                  <h4 ng-click="addNewComment()" id="add-comment-action-label">Add Comment</h4>
+              </article>            
             </section>
             </article>
         </section>
