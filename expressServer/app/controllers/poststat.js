@@ -28,3 +28,10 @@ exports.getTopPosts = function(callback) {
         if (err) throw err;
     });
 }
+
+exports.getAllStats = function(callback) {
+    PostStat.find().exec(function(err, results){
+        if (err) throw err;
+        callback(results);
+    })
+}

@@ -2,12 +2,31 @@
 
 var shauli = angular.module('shauli');
 
-shauli.controller('AdminCtrl', ['$scope', '$http', function($scope, $http) {
+shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    // Admin can edit posts
+    $scope.isDisable = false;
+
+    $scope.closeAndReset = function() {
+        $scope.editedPost = {};
+    }
+    $scope.savePost = function() {
+        $http.put("post/" + $scope.editedPost._id, $scope.editedPost)
+        .then(function(res) {
+            $scope.getAllPosts();
+        }, function (error) {
+            console.log(error)
+        });
+    };
     $scope.getAllPosts = function() {
-        $http.get('post/').then(function(res) {
+        $http.get('admin/').then(function(res) {
             $scope.posts = res.data;
         }, function(err) {
-            console.log(err);
+            if (err.status == 401) {
+                $window.location.href = '#/login';
+            }
+            else {
+                console.log(err);
+            }
         });
     }
     $scope.editPost = function(post) {
@@ -82,13 +101,13 @@ shauli.controller('AdminCtrl', ['$scope', '$http', function($scope, $http) {
     }
 
     $scope.generatePieChart = function() {
-        $http.get("/post/getPostStats", function(res) {
+        $http.get("/post/getPostStats").then(function(res) {
             var data = res.data;
             if (data && data.length) {
                 var formattedData = data.map(function (obj) {
                     return {
-                        value: obj.Counter,
-                        label: obj.Title
+                        value: obj.counter,
+                        label: obj.title
                     }
                 });
                 var width = 300,

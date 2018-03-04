@@ -23,9 +23,19 @@ $scope.getPosts = function() {
     });
 }
 
+$scope.getMoreDetails = function(post) {
+    $scope.expandedPost = post._id;
+};
+
 $scope.getPostDetails = function(post) {
     $scope.isDisable = true;
-    $scope.editedPost = post;
+
+    $http.get(`post/${post._id}`).then(function(res) {
+        console.log("postByid", res)
+        $scope.editedPost = res.data;
+    }, function (error) {
+        console.log(res)
+    });
 };
 
 $scope.closeAndReset = function() {

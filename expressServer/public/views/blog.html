@@ -1,5 +1,6 @@
-<div>
-        <div class="container">
+<div id="mainContent" class="blog-container">
+    <section>
+        <div>
                 <div class="row">
                     <div class="col-md-8">
                                         <form class="form-horizontal" role="form">
@@ -33,33 +34,76 @@
                                     </div>
                                 </div>
                             </div>
+                            </section>
+        <section ng-repeat="post in posts">
+            <article class="blogPost">
+                <header ng-click="getMoreDetails(post)">
+                    <h2>
+                        <div>
+                          {{post.title}}
                         </div>
-                    </div>
-                  </div>
+                    </h2>
+                    <p>
+                        Posted on.
+                        <time datetime="{{post.publishDate}}">
+                          {{post.publishDate}}                        
+                        </time>
+                        by
+                        <a ng-href="post.writerWebsiteUrl">{{post.writer}}</a>
+                        -
+                        <a>
+                            {{post.comments.length}} comments
+                        </a>
+                    </p>
+                </header>
+                <div>
+                    <p>
+                       {{post.content}}
+                    </p>
+                   <span ng-if=post.image>
+                      <img src="{{post.image}}" />
+                   </span>
                 </div>
-        </div>
-        <table id="postsTable" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Post Title</th>
-              <th scope="col">Posted on</th>
-              <th scope="col">By</th>
-              <th scope="col">post content</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="post in posts | filter:searchText">
-              <td scope="row">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click=getPostDetails(post)>Details</button>
-              </td>
-              <td>{{post.title}}</td>
-              <td>{{post.publishDate}}</td>
-              <td>{{post.writer}}</td>
-              <td>{{post.content}}</td>
-            </tr>
-          </tbody>
-        </table>
+                <section id="comments" ng-show="post._id == expandedPost">
+                  <h3>Comments</h3>
+                  <article ng-repeat="comment in post.comments">
+                      <dl class="dl-horizontal">
+                          <dt>
+                              Title:
+                          </dt>
+                          <dd>
+                              {{comment.title}}
+                          </dd>
+
+                          <dt>
+                              Writer
+                          </dt>
+                          <dd>
+                              {{comment.writer}}
+                          </dd>
+
+                          <dt>
+                              Content
+                          </dt>
+                          <dd>
+                              {{comment.content}}
+                          </dd>
+
+                          <dt>
+                              Writer Website URL
+                          </dt>
+                          <dd>
+                              <a ng-href="comment.writerWebSiteUrl)">
+                                  {{comment.writerWebSiteUrl}}
+                              </a>
+                          </dd>
+                      </dl>
+                  </article>
+            </section>
+            </article>
+        </section>
+        </section>
+        <section>
         <div id="addPost">
           <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Post</button>
         </div>
