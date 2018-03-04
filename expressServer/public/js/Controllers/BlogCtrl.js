@@ -23,6 +23,10 @@ $scope.getPosts = function() {
     });
 }
 
+$scope.getMoreDetails = function(post) {
+    $scope.expandedPost = post._id;
+};
+
 $scope.getPostDetails = function(post) {
     $scope.isDisable = true;
     $scope.editedPost = post;
