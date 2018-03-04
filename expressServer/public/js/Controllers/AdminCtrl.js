@@ -101,13 +101,13 @@ shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $
     }
 
     $scope.generatePieChart = function() {
-        $http.get("/post/getPostStats", function(res) {
+        $http.get("/post/getPostStats").then(function(res) {
             var data = res.data;
             if (data && data.length) {
                 var formattedData = data.map(function (obj) {
                     return {
-                        value: obj.Counter,
-                        label: obj.Title
+                        value: obj.counter,
+                        label: obj.title
                     }
                 });
                 var width = 300,
