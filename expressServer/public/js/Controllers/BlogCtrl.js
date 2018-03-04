@@ -3,6 +3,7 @@
 var shauli = angular.module('shauli');
 
 shauli.controller('BlogController', ['$scope', '$http', function($scope, $http) {
+$scope.addComment = {};
 
 $scope.getPosts = function() {
     $http({
@@ -25,6 +26,10 @@ $scope.getPosts = function() {
 
 $scope.getMoreDetails = function(post) {
     $scope.expandedPost = post._id;
+};
+
+$scope.addPostComment = function(post) {
+    $scope.addCommentToPost = post._id;
 };
 
 $scope.getPostDetails = function(post) {
@@ -54,6 +59,21 @@ $scope.addPost = function() {
         console.log(error)
     });
 };
+
+$scope.addNewComment = function() {
+    console.log($scope.addComment);
+    $scope.addComment.postId = $scope.addCommentToPost;
+
+    $http({
+    url:"comment/",
+    method: "POST",
+    data: $scope.addComment}).then(()=>{
+        $scope.getPosts();
+        $scope.addComment = {};
+        $scope.addCommentToPost = '';
+        $scope.expandedPost = '';
+    });
+}
 
 $scope.getPosts();
     
