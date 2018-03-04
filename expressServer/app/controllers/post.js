@@ -116,6 +116,22 @@ exports.getPostsCountByWriter = function(req, res) {
 exports.getPostStats = function(req, res) {
 
 }
+
+exports.admin = function(req, res) {
+  var adminCookieFound = false;
+  var cookies = Object.keys(req.cookies);
+  cookies.forEach(function(key) {
+    if (key == "admin") {
+      adminCookieFound = true;
+    }
+  })
+  if (!adminCookieFound) {
+    res.sendStatus(401);;
+  }
+  else {
+    exports.index(req, res);
+  }
+}
 // //=============================
 // // Search
 // //=============================
