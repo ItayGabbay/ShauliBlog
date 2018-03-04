@@ -25,7 +25,13 @@ $scope.getPosts = function() {
 
 $scope.getPostDetails = function(post) {
     $scope.isDisable = true;
-    $scope.editedPost = post;
+
+    $http.get(`post/${post._id}`).then(function(res) {
+        console.log("postByid", res)
+        $scope.editedPost = res.data;
+    }, function (error) {
+        console.log(res)
+    });
 };
 
 $scope.closeAndReset = function() {
