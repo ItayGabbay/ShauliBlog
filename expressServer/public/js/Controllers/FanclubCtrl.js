@@ -14,9 +14,10 @@ $scope.getFans = function() {
             "birthday" : $scope.fanBirthday,
             "gender": $scope.fanGender,
             "address" : $scope.fanAddress
-        }  
+        } 
     }).then(function(res) {
-        $scope.posts = res.data;
+        console.log('get fansss', res);
+        $scope.fans = res.data;
     }, function (error) {
         console.log(res)
     });
