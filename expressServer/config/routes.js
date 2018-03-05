@@ -14,7 +14,7 @@ const fan = require("../app/controllers/fan")
  * Expose
  */
 
-module.exports = function(app, passport, io) {
+module.exports = function(app, io) {
   app.get("/", home.index);
 
   app.get("/post/", post.index);
@@ -33,8 +33,8 @@ module.exports = function(app, passport, io) {
   app.put("/comment/:id", comment.update);
   app.delete("/comment/:id", comment.delete);
 
-  app.get("/fans/", fan.getAll);
-  app.get("/fans/:id", fan.getFanById);
+  app.get("/fans/", fan.index);
+  app.get("/fans/:id", fan.show);
   app.get("/fans/:id/posts", fan.getPostsByFanId);  
   app.post("/fans/", fan.create);
   app.put("/fans/:id", fan.edit);
@@ -48,8 +48,7 @@ module.exports = function(app, passport, io) {
 
   app.use(function(err, req, res, next) {
     // treat as 404
-    if (false &&
-      err.message &&
+    if (err.message &&
       (~err.message.indexOf("not found") ||
         ~err.message.indexOf("Cast to ObjectId failed"))
     ) {
@@ -60,14 +59,7 @@ module.exports = function(app, passport, io) {
     res.status(500).render("500", { error: err.stack });
   });
 
-  // assume 404 since no middleware responded
-  app.use(function(req, res, next) {
-    res.status(404).render("404", {
-      url: req.originalUrl,
-      error: "Not found"
-    });
-  });
-
+  // Socket io connection
   io.on('connection', function(socket) {
     socket.emit('socketConnect', 'success');
     socket.on('postDelete', function(data) {

@@ -20,17 +20,21 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label>gender</label>
-                    <input type="radio" ng-model="fanGender" value="male" />male
-                    <input type="radio" ng-model="fanGender" value="female" />female
-                    <button class="btn btn-primary" ng-click="getFans() ">search</button>
-                    <button class="btn btn-secondary" ng-click="createFan() ">create</button>
+                    <input type="radio" ng-model="fanGender" value="all" />All genders                    
+                    <input type="radio" ng-model="fanGender" value="male" />Male
+                    <input type="radio" ng-model="fanGender" value="female" />Female
+                    <button class="btn btn-primary" ng-click="searchFans()">Search</button>
+                    <button class="btn btn-primary" ng-click="createFan()">Create</button>
+                    <button class="btn btn-secondary" ng-click="clearFilter()">Clear</button>
                 </div>
             </form>
         </div>
     </div>
+    <div ng-repeat="error in createFanErrors">
+        <div class="create-fan-error">{{error}}</div>
+    </div>
     <div class="row ">
         <div class="col-md-12 ">
-            <div ng-if="Model.length ">
                 <table class="table ">
                     <tr>
                         <th>
@@ -53,30 +57,24 @@
                         </th>
                         <th></th>
                     </tr>
-                    <tr ng-repeat="item in fans ">
+                    <tr ng-repeat="item in fans">
                         <td>
-                            {{ item.FirstName }}
+                            {{ item.firstName }}
                         </td>
                         <td>
-                            {{ item.LastName }}
+                            {{ item.lastName }}
                         </td>
                         <td>
-                            {{ item.Gender }}
+                            {{ item.gender }}
                         </td>
                         <td>
-                            {{ item.DateOfBirth }}
+                            {{  toPrettyDate(item.dateOfBirth) }}
                         </td>
                         <td>
-                            {{item.YearsOfSeniority}}
+                            {{item.yearsOfSeniority}}
                         </td>
                         <td>
-                            {{ item.Address }}
-                        </td>
-                        <td>
-                            <a ng-href="#/fanclub/edit/{{item.id}} ">Edit</a>|
-                            <a ng-href="#/fanclub/details/{{item.id}} ">Details</a>|
-                            <a ng-href="#/fanclub/delete/{{item.id}} ">Delete</a>|
-                            <a ng-href="#/fanclub/find post/{{item.id}} ">Find Post</a>|
+                            {{ item.address }}
                         </td>
                     </tr>
                 </table>

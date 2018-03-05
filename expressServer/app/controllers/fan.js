@@ -3,16 +3,37 @@ const mongoose = require("mongoose");
 const Fans = mongoose.model("Fans");
 const Posts = mongoose.model("Post")
 
-exports.getAll = function(req, res) {
-	Fans.find({}, function(err, fans) {
-		if (err) {
-			throw err;
-		}
-		res.send(fans);
-	});
-}
+exports.index = function(req, res) {
+	let query = {};
 
-exports.getFanById = function(req, res) {
+	if (req.query["firstName"]) {
+		query.firstName = { $regex: req.query["firstName"], $options: "i" };
+	}
+
+	if (req.query["lastName"]) {
+		query.lastName = { $regex: req.query["lastName"], $options: "i" };
+	}
+
+	if (req.query["dateOfBirth"]) {
+		query.dateOfBirth = new Date(req.query["dateOfBirth"]);
+	}
+
+	if (req.query["gender"]) {
+		query.gender = req.query["gender"];
+	}
+
+	if (req.query["address"]) {
+		query.address = { $regex: req.query["address"], $options: "i" };
+	}
+
+	Fans.find(query).exec(function (err, data) {
+		if (err) throw err;
+
+		res.send(data);
+	})}
+
+
+exports.show = function(req, res) {
 	Fans.findOne({_id: req.params.id}, function (err, fan) {
 		if (err) {
 			throw err;

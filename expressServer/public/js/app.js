@@ -1,6 +1,7 @@
 'use strict';
 
-var shauli = angular.module('shauli', ['ngRoute', 'adminModule','ngMap']);
+var shauli = angular.module('shauli', ['ngRoute', 'adminModule','ngMap','fansClubModule']);
+
 
 shauli.config(function ($routeProvider, $locationProvider) {
 $routeProvider
@@ -30,7 +31,7 @@ $routeProvider
         })
         .when('/fanclub', {
             templateUrl: 'views/fans.html', 
-            controller: 'FanclubCtrl'
+            controller: 'FansClubController'
         })
         .when('/videos', {
             templateUrl: 'views/video.html', 
