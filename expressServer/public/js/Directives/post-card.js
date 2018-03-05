@@ -8,5 +8,8 @@ shauli.directive('postCard', function() {
             buttonText: '@',
             callback: '='
         },
+        // link:  function ($scope, element, attrs) { 
+        //     debugger;
+        // } 
     }
 })

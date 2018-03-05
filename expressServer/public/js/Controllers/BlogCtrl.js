@@ -26,20 +26,16 @@ $scope.getPosts = function() {
 
 $scope.getMoreDetails = function(post) {
     $scope.expandedPost = post._id;
-};
-
-$scope.addPostComment = function(post) {
-    $scope.addCommentToPost = post._id;
-};
-
-$scope.getPostDetails = function(post) {
-    $scope.isDisable = true;
 
     $http.get(`post/${post._id}`).then(function(res) {
         $scope.editedPost = res.data;
     }, function (error) {
         console.log(error)
     });
+};
+
+$scope.addPostComment = function(post) {
+    $scope.addCommentToPost = post._id;
 };
 
 $scope.closeAndReset = function() {
