@@ -4,8 +4,7 @@ var PostStat = require("./poststat")
 //=============================
 // List
 //=============================
- 
-exports.index = function(req, res) {
+ exports.index = function(req, res) {
   var query = {};
 
   if (req.query["startDate"]) {
@@ -88,14 +87,18 @@ exports.update = function(req, res) {
 //=============================
 // Delete
 //=============================
-exports.delete = function(req, res) {
-  var id = req.params.id;
+// exports.delete = function(req, res) {
+//   var id = req.params.id;
 
-  Post.remove({ _id: id }, function(err) {
-    if (err) throw err;
+//   Post.remove({ _id: id }, function(err) {
+//     if (err) throw err;
 
-    res.send(200);
-  });
+//     res.send(200);
+//   });
+// };
+
+exports.delete = function(postId, callback) {
+  Post.remove({ _id: postId }, callback);
 };
 
 exports.getTopPosts = function(req, res) {
