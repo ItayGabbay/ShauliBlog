@@ -21,10 +21,11 @@ const config = require('./config');
 
 const models = join(__dirname, 'app/models');
 const port = process.env.PORT || 3000;
-
 const app = express();
-const connection = connect();
+const server = require('http').Server(app);
 
+const connection = connect();
+const io = require('socket.io')(server);
 /**
  * Expose
  */
@@ -42,7 +43,7 @@ fs.readdirSync(models)
 // Bootstrap routes
 require('./config/passport')(passport);
 require('./config/express')(app, passport);
-require('./config/routes')(app, passport);
+require('./config/routes')(app, passport, io);
 
 connection
   .on('error', console.log)
@@ -51,7 +52,7 @@ connection
 
 function listen () {
   if (app.get('env') === 'test') return;
-  app.listen(port);
+  server.listen(port);  
   console.log('Express app started on port ' + port);
 }
 

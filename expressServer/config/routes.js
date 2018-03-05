@@ -14,7 +14,7 @@ const fan = require("../app/controllers/fan")
  * Expose
  */
 
-module.exports = function(app, passport) {
+module.exports = function(app, passport, io) {
   app.get("/", home.index);
 
   app.get("/post/", post.index);
@@ -70,4 +70,14 @@ module.exports = function(app, passport) {
       error: "Not found"
     });
   });
+
+  io.on('connection', function(socket) {
+    socket.emit('socketConnect', 'success');
+    socket.on('postDelete', function(data) {
+    post.delete(data._id, function(err, res) {
+        if (err) throw err;
+        socket.emit('postDeleteSuccess', data._id)
+      })
+    })
+  })
 };
