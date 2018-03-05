@@ -1,8 +1,7 @@
 'use strict';
+var adminModule = angular.module('adminModule', []);
 
-var shauli = angular.module('shauli');
-
-shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
     var socket = io(document.origin);
     socket.on('socketConnect', function(data) {
         if (data != 'success')
