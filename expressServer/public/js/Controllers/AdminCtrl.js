@@ -26,8 +26,8 @@ shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $
     $scope.closeAndReset = function() {
         $scope.editedPost = {};
     }
-    $scope.savePost = function() {
-        $http.put("post/" + $scope.editedPost._id, $scope.editedPost)
+    $scope.savePost = function(post) {
+        $http.put("post/" + post._id, post)
         .then(function(res) {
             $scope.getAllPosts();
         }, function (error) {
@@ -46,9 +46,6 @@ shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $
             }
         });
     }
-    $scope.editPost = function(post) {
-        $scope.editedPost = post;
-    };
     $scope.deletePost = function(post) {
         var postId = post._id;
         // $http.delete('post/' + postId).then(function(res) {
