@@ -7,14 +7,11 @@ var PostStat = require("./poststat")
  exports.index = function(req, res) {
   var query = {};
 
-  if (req.query["startDate"]) {
-    query.publishDate = { $gte: new Date(req.query["startDate"]) };
+  if (req.query["startDate"] || req.query["endDate"]) {
+    query.publishDate = {};
+    req.query["startDate"] ?query.publishDate["$gte"] = new Date(req.query["startDate"]):null;
+    req.query["endDate"]?query.publishDate["$lte"] = new Date(req.query["endDate"]):null;
   }
-
-  if (req.query["endDate"]) {
-    query.publishDate = { $lte: new Date(req.query["endDate"]) };
-  }
-
   if (req.query["postWriter"]) {
     query.writer = { $regex: req.query["postWriter"], $options: "i" };
   }
