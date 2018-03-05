@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
 const Post = mongoose.model("Post");
-var PostStat = require("./poststat")
 //=============================
 // List
 //=============================

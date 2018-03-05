@@ -16,7 +16,6 @@ const fs = require('fs');
 const join = require('path').join;
 const express = require('express');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const config = require('./config');
 
 const models = join(__dirname, 'app/models');
@@ -41,9 +40,8 @@ fs.readdirSync(models)
   .forEach(file => require(join(models, file)));
 
 // Bootstrap routes
-require('./config/passport')(passport);
-require('./config/express')(app, passport);
-require('./config/routes')(app, passport, io);
+require('./config/express')(app);
+require('./config/routes')(app, io);
 
 connection
   .on('error', console.log)
