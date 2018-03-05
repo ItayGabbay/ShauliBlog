@@ -20,7 +20,6 @@
     "express": "4.15.3",
     "express-session": "~1.15.1",
     "lodash": "^4.17.5",
-    "method-override": "~2.3.5",
     "mongoose": "~4.11.0",
     "mongoose-user": "~0.0.1",
     "socket.io": ""
