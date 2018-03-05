@@ -32,6 +32,9 @@ $routeProvider
             templateUrl: 'views/fans.html', 
             controller: 'FanclubCtrl'
         })
+        .when('/videos', {
+            templateUrl: 'views/video.html', 
+        })
     $locationProvider
         .html5Mode(false)
         .hashPrefix('');
