@@ -33,8 +33,8 @@ module.exports = function(app, passport, io) {
   app.put("/comment/:id", comment.update);
   app.delete("/comment/:id", comment.delete);
 
-  app.get("/fans/", fan.getAll);
-  app.get("/fans/:id", fan.getFanById);
+  app.get("/fans/", fan.index);
+  app.get("/fans/:id", fan.show);
   app.get("/fans/:id/posts", fan.getPostsByFanId);  
   app.post("/fans/", fan.create);
   app.put("/fans/:id", fan.edit);
