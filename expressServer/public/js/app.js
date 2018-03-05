@@ -1,6 +1,6 @@
 'use strict';
 
-var shauli = angular.module('shauli', ['ngRoute', 'adminModule']);
+var shauli = angular.module('shauli', ['ngRoute', 'adminModule','ngMap']);
 
 shauli.config(function ($routeProvider, $locationProvider) {
 $routeProvider
@@ -34,6 +34,10 @@ $routeProvider
         })
         .when('/videos', {
             templateUrl: 'views/video.html', 
+        })
+        .when('/map', {
+            templateUrl: 'views/fanMap.html', 
+            controller: 'FanMapController'
         })
     $locationProvider
         .html5Mode(false)
