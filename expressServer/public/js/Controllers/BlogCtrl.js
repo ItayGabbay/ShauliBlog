@@ -20,7 +20,7 @@ $scope.getPosts = function() {
     }).then(function(res) {
         $scope.posts = res.data;
     }, function (error) {
-        console.log(res)
+        console.log(error)
     });
 }
 
@@ -36,10 +36,9 @@ $scope.getPostDetails = function(post) {
     $scope.isDisable = true;
 
     $http.get(`post/${post._id}`).then(function(res) {
-        console.log("postByid", res)
         $scope.editedPost = res.data;
     }, function (error) {
-        console.log(res)
+        console.log(error)
     });
 };
 
@@ -61,7 +60,6 @@ $scope.addPost = function() {
 };
 
 $scope.addNewComment = function() {
-    console.log($scope.addComment);
     $scope.addComment.postId = $scope.addCommentToPost;
 
     $http({

@@ -254,6 +254,11 @@ aside section {
 	margin-bottom: 30px;
 }
 
+.login-container {
+	padding: 20px 0 0 25px;
+	margin-bottom: 800px;
+}
+
 .blogPost {
 	font-family: 'Lobster';
 }
