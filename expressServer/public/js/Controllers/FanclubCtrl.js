@@ -6,6 +6,11 @@ fansClubModule.controller('FansClubController', ['$scope', '$http', 'fansClubSer
 function($scope, $http, fansClubService) {
 
     $scope.searchFans = function() {
+        if ($scope.fanBirthday) {
+            $scope.fanBirthday = new Date($scope.fanBirthday);
+            $scope.fanBirthday.setHours(0,0,0,0);
+        }
+
         fansClubService.searchFans($scope.fanFirstName, 
                                    $scope.fanLastName,
                                    $scope.fanBirthday,
@@ -55,6 +60,11 @@ function($scope, $http, fansClubService) {
             $scope.createFanErrors.push("Gender must be male or female, sorry");
         }
 
+        if ($scope.fanBirthday) {
+            $scope.fanBirthday = new Date($scope.fanBirthday);
+            $scope.fanBirthday.setHours(0,0,0,0);
+        }
+
         if ($scope.createFanErrors.length === 0) {
             fansClubService.createFan({
                 firstName: $scope.fanFirstName,
@@ -70,7 +80,7 @@ function($scope, $http, fansClubService) {
     }
 
     $scope.toPrettyDate = function(date) {
-        return new Date(date);
+        return new Date(date).toLocaleDateString();
     }
 
     $scope.fanGender = "all";
