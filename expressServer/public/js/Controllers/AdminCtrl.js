@@ -1,7 +1,8 @@
 'use strict';
 var adminModule = angular.module('adminModule', []);
 
-adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+adminModule.controller('AdminCtrl', ['$scope', '$window', 'adminApiService', 
+    function($scope, $window, adminApiService) {
     var socket = io(document.origin);
     socket.on('socketConnect', function(data) {
         if (data != 'success')
@@ -26,7 +27,7 @@ adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($sco
         $scope.editedPost = {};
     }
     $scope.savePost = function(post) {
-        $http.put("post/" + post._id, post)
+        adminApiService.savePost()
         .then(function(res) {
             $scope.getAllPosts();
         }, function (error) {
@@ -34,7 +35,7 @@ adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($sco
         });
     };
     $scope.getAllPosts = function() {
-        $http.get('admin/').then(function(res) {
+        adminApiService.getAllPosts().then(function(res) {
             $scope.posts = res.data;
         }, function(err) {
             if (err.status == 401) {
@@ -46,19 +47,11 @@ adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($sco
         });
     }
     $scope.deletePost = function(post) {
-        var postId = post._id;
-        // $http.delete('post/' + postId).then(function(res) {
-        //     alert("Post deleted");
-        //     $scope.getAllPosts();
-        // }, function(err) {
-        //     console.log(err);
-        // })
         socket.emit('postDelete', post);
-        
     }
 
     $scope.generateBarChart = function() {
-        $http.get("post/getPostsCountByWriter").then(function(res) {
+        adminApiService.getPostsCountByWriter().then(function(res) {
             var data = res.data;
             if (data && data.length) {
                 // set the dimensions and margins of the graph
@@ -116,7 +109,7 @@ adminModule.controller('AdminCtrl', ['$scope', '$http', '$window', function($sco
     }
 
     $scope.generatePieChart = function() {
-        $http.get("/post/getPostStats").then(function(res) {
+        adminApiService.getPostStats().then(function(res) {
             var data = res.data;
             if (data && data.length) {
                 var formattedData = data.map(function (obj) {

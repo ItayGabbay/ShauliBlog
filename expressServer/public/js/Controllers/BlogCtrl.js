@@ -2,22 +2,11 @@
 
 var shauli = angular.module('shauli');
 
-shauli.controller('BlogController', ['$scope', '$http', function($scope, $http) {
+shauli.controller('BlogController', ['$scope', 'blogApiService', function($scope, blogApiService) {
 $scope.addComment = {};
 
 $scope.getPosts = function() {
-    $http({
-        url:"post/",
-        method: "GET",
-        params: {
-            "startDate": $scope.startDate,
-            "endDate" : $scope.endDate,
-            "postTitle" : $scope.searchedtitle,
-            "postWriter": $scope.searchedwriter,
-            "postWriterWebsiteURL" : $scope.searchedWebsiteUrl,
-            "wordsInPost" : $scope.searchedcontent
-        }  
-    }).then(function(res) {
+    blogApiService.getPosts($scope).then(function(res) {
         $scope.posts = res.data;
     }, function (error) {
         console.log(error)
@@ -27,9 +16,7 @@ $scope.getPosts = function() {
 $scope.getMoreDetails = function(post) {
     $scope.expandedPost = post._id;
 
-    $http.get(`post/${post._id}`).then(function(res) {
-        $scope.editedPost = res.data;
-    }, function (error) {
+   blogApiService.addViewCounterToPost(post._id).then(undefined, function (error) {
         console.log(error)
     });
 };
@@ -46,7 +33,7 @@ $scope.closeAndReset = function() {
 $scope.addPost = function() {
     $scope.isDisable = false;
 
-    $http.post("post/", $scope.editedPost)
+    blogApiService.addPost($scope.editedPost)
     .then(function(res) {
         $scope.posts = res.data;
         $scope.getPosts();
@@ -57,11 +44,7 @@ $scope.addPost = function() {
 
 $scope.addNewComment = function() {
     $scope.addComment.postId = $scope.addCommentToPost;
-
-    $http({
-    url:"comment/",
-    method: "POST",
-    data: $scope.addComment}).then(()=>{
+    blogApiService.addComment($scope.addComment).then(()=>{
         $scope.getPosts();
         $scope.addComment = {};
         $scope.addCommentToPost = '';

@@ -1,12 +1,13 @@
 'use strict';
 
-var shauli = angular.module('shauli');
+var adminModule = angular.module('adminModule');
 
-shauli.controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+adminModule.controller('LoginCtrl', ['$scope', 'adminApiService', '$window', 
+function($scope, adminApiService, $window) {
     $scope.user = {};
 
     $scope.submitLogin = function() {
-        $http.post("/login", $scope.user).then(function(res) {
+        adminApiService.login($scope.user).then(function(res) {
             $window.location.href = '#/admin'
         }, function(err) {
           console.log(err);  
