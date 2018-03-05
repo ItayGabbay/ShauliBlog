@@ -19,7 +19,7 @@ exports.index = function(req, res) {
 	}
 
 	if (req.query["gender"]) {
-		query.gender = { $regex: req.query["gender"], $options: "i" };
+		query.gender = req.query["gender"];
 	}
 
 	if (req.query["address"]) {

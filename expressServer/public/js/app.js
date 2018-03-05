@@ -1,6 +1,6 @@
 'use strict';
 
-var shauli = angular.module('shauli', ['ngRoute', 'adminModule']);
+var shauli = angular.module('shauli', ['ngRoute', 'adminModule', 'fansClubModule']);
 
 shauli.config(function ($routeProvider, $locationProvider) {
 $routeProvider
