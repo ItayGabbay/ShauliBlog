@@ -139,66 +139,6 @@
         </section>
         </section>
         <section>
-        <div id="addPost">
-          <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Post</button>
-        </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeButton" ng-click="closeAndReset()"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Post Details</h4>
-        </div>
-        <div class="modal-body">
-          <form name="bussForm">
-            <fieldset class="form-group" ng-disabled="isDisable">
-              <label for="name">Title</label>
-              <input type="text" class="form-control" id="name" ng-model="editedPost.title" placeholder="Add post title here">
-            </fieldset>
-            <fieldset class="form-group" ng-disabled="isDisable">
-                <label for="name">Writer</label>
-                <input type="text" class="form-control" id="name" ng-model="editedPost.writer" placeholder="Add post writer here">
-              </fieldset>
-              <fieldset class="form-group" ng-disabled="isDisable">
-                  <label for="name">Publish Date</label>
-                  <input type="text" class="form-control" id="name" ng-model="editedPost.publishDate" disabled>
-                </fieldset>
-                <fieldset class="form-group" ng-disabled="isDisable">
-                    <label for="name">Content</label>
-                    <input type="text" class="form-control" id="name" ng-model="editedPost.content" placeholder="add your post here">
-                  </fieldset>
-                  <fieldset class="form-group" ng-disabled="isDisable">
-                      <label for="name">Post Comments</label>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">Title</th>
-                          <th scope="col">posted by</th>
-                          <th scope="col">writer webSiteURL</th>
-                          <th scope="col">content</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="comment in editedPost.comments">
-                          
-                          <td>{{comment.title}}</td>
-                          <td>{{comment.writer}}</td>
-                          <td>{{comment.writerWebsiteUrl}}</td>
-                          <td>{{comment.content}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </fieldset>
-                  </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="isDisable" ng-click="addPost()">Save</button>
-        </div>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
+<post-card post="editedPost" callback="addPost" button-text="Add New Post"></post-card>

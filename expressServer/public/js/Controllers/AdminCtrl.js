@@ -3,14 +3,31 @@
 var shauli = angular.module('shauli');
 
 shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+    var socket = io(document.origin);
+    socket.on('socketConnect', function(data) {
+        if (data != 'success')
+            console.error('Problem connecting using websocket!');
+    });
+
+    socket.on('postDeleteSuccess', function(postId) {
+        // Searching the post in the posts array
+        for (var i in $scope.posts) {
+            if ($scope.posts[i]._id == postId) {
+                // delete the post
+                $scope.posts.splice(i, 1);
+                $scope.$apply();
+                break;
+            }
+        }
+    })
     // Admin can edit posts
     $scope.isDisable = false;
 
     $scope.closeAndReset = function() {
         $scope.editedPost = {};
     }
-    $scope.savePost = function() {
-        $http.put("post/" + $scope.editedPost._id, $scope.editedPost)
+    $scope.savePost = function(post) {
+        $http.put("post/" + post._id, post)
         .then(function(res) {
             $scope.getAllPosts();
         }, function (error) {
@@ -29,17 +46,16 @@ shauli.controller('AdminCtrl', ['$scope', '$http', '$window', function($scope, $
             }
         });
     }
-    $scope.editPost = function(post) {
-        $scope.editedPost = post;
-    };
     $scope.deletePost = function(post) {
         var postId = post._id;
-        $http.delete('post/' + postId).then(function(res) {
-            alert("Post deleted");
-            $scope.getAllPosts();
-        }, function(err) {
-            console.log(err);
-        })
+        // $http.delete('post/' + postId).then(function(res) {
+        //     alert("Post deleted");
+        //     $scope.getAllPosts();
+        // }, function(err) {
+        //     console.log(err);
+        // })
+        socket.emit('postDelete', post);
+        
     }
 
     $scope.generateBarChart = function() {

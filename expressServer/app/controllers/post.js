@@ -4,8 +4,7 @@ var PostStat = require("./poststat")
 //=============================
 // List
 //=============================
- 
-exports.index = function(req, res) {
+ exports.index = function(req, res) {
   var query = {};
 
   if (req.query["startDate"]) {
@@ -54,9 +53,12 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
   var id = req.params.id;
 
-  Post.findOne({ _id: id }).populate("comments").exec(function(err, post) {
+  Post.findOne({ _id: id }).exec(function(err, post) {
     if (err) throw err;
-    PostStat.addViewToPost(post._id);
+    post.counter++;
+    Post.update({_id: id}, post, function(err, raw) {
+      if (err) throw err;
+    })
     res.send(post);
   });
 };
@@ -88,26 +90,26 @@ exports.update = function(req, res) {
 //=============================
 // Delete
 //=============================
-exports.delete = function(req, res) {
-  var id = req.params.id;
+// exports.delete = function(req, res) {
+//   var id = req.params.id;
 
-  Post.remove({ _id: id }, function(err) {
-    if (err) throw err;
+//   Post.remove({ _id: id }, function(err) {
+//     if (err) throw err;
 
-    res.send(200);
-  });
+//     res.send(200);
+//   });
+// };
+
+exports.delete = function(postId, callback) {
+  Post.remove({ _id: postId }, callback);
 };
 
 exports.getTopPosts = function(req, res) {
-  PostStat.getTopPosts(function(data) {
-    var ids = data.map(function(obj) {
-      return obj._id;
-    })
-    Post.find({_id: {'$in': ids}}).exec(function(err, results) {
-      if (err) throw err;
-      res.send(results);
-    })
-  })
+  Post.aggregate([{$sort: {counter: -1}}, {$limit: 3}]).then(function(results) {
+    res.send(results);
+  }, function(err) {
+    if (err) throw err;
+  });
 }
 
 exports.getPostsCountByWriter = function(req, res) {
@@ -120,23 +122,9 @@ exports.getPostsCountByWriter = function(req, res) {
 }
 
 exports.getPostStats = function(req, res) {
-  PostStat.getAllStats(function(stats) {
-    var ids = stats.map(function(obj) {
-      return obj._id;
-    })
-    Post.find({_id: {"$in": ids}}, {_id: 1, title: 1}).exec(function(err, posts){
-      if (err) throw err;
-      var response = [];
-        posts.forEach(function(post) {
-          for (var i in stats) {
-            if (stats[i]._id.equals(post._id)) {
-              response.push({title: post.title, counter:stats[i].counter})
-              break;
-            }
-          }
-        })
-      res.send(response);
-    })
+  Post.find({"counter": {'$gte': 1}}, {title: 1, counter: 1}).exec(function(err, results) {
+    if (err) throw err;
+    res.send(results);
   })
 }
 
