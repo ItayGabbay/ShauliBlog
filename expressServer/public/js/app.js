@@ -30,7 +30,7 @@ $routeProvider
         })
         .when('/fanclub', {
             templateUrl: 'views/fans.html', 
-            controller: 'FanclubController'
+            controller: 'FansClubController'
         })
         .when('/videos', {
             templateUrl: 'views/video.html', 

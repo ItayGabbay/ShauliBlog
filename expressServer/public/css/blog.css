@@ -405,3 +405,10 @@ footer {
 		footer ul li a {
 			display: block;
 		}
+/************
+* FANS
+*************/
+.create-fan-error {
+	color: red;
+	margin-left: 5px;
+}

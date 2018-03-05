@@ -2,28 +2,16 @@
 
 var fansClubModule = angular.module('fansClubModule', []);
 
-fansClubModule.controller('FanclubController', ['$scope', '$http', function($scope, $http) {
+fansClubModule.controller('FansClubController', ['$scope', '$http', 'fansClubService',  
+function($scope, $http, fansClubService) {
 
     $scope.searchFans = function() {
-        let queryParams = {};
-        // Setting only wanted filters
-        $scope.fanFirstName && (queryParams.firstName = $scope.fanFirstName);
-        $scope.fanLastName && (queryParams.lastName = $scope.fanLastName);
-        $scope.fanBirthday && (queryParams.birthday = $scope.fanBirthday);
-        $scope.fanGender && $scope.fanGender !== "all" && (queryParams.gender = $scope.fanGender);
-        $scope.fanAddress && (queryParams.address = $scope.fanAddress);
-        
-        $http({
-            url:"fans/",
-            method: "GET",
-            params: {
-                "firstName": $scope.fanFirstName,
-                "lastName" : $scope.fanLastName,
-                "birthday" : $scope.fanBirthday,
-                "gender": $scope.fanGender,
-                "address" : $scope.fanAddress
-            } 
-        }).then(function(res) {
+        fansClubService.searchFans($scope.fanFirstName, 
+                                   $scope.fanLastName,
+                                   $scope.fanBirthday,
+                                   $scope.fanGender,
+                                   $scope.fanAddress)
+        .then(function(res) {
             $scope.fans = res.data;
         }, function (error) {
             console.log(error)
@@ -31,10 +19,8 @@ fansClubModule.controller('FanclubController', ['$scope', '$http', function($sco
     }
 
     $scope.getFans = function() {
-        $http({
-            url:"fans/",
-            method: "GET"
-        }).then(function(res) {
+        fansClubService.getFans()
+        .then(function(res) {
             console.log('get fansss', res);
             $scope.fans = res.data;
         }, function (error) {
@@ -48,10 +34,43 @@ fansClubModule.controller('FanclubController', ['$scope', '$http', function($sco
             fanLastName: "",
             fanBirthday: null,
             fanGender: "all",
-            fanAddress: ""
+            fanAddress: "",
+            createFanErrors: []
         });
 
         $scope.getFans();
+    }
+
+    $scope.createFan = function() {
+        $scope.createFanErrors = [];
+        if (!$scope.fanFirstName) {
+            $scope.createFanErrors.push("First name is mandatory");
+        }
+
+        if (!$scope.fanLastName) {
+            $scope.createFanErrors.push("Last name is mandatory");
+        }
+
+        if (!$scope.fanGender || $scope.fanGender === "all") {
+            $scope.createFanErrors.push("Gender must be male or female, sorry");
+        }
+
+        if ($scope.createFanErrors.length === 0) {
+            fansClubService.createFan({
+                firstName: $scope.fanFirstName,
+                lastName: $scope.fanLastName,
+                dateOfBirth: $scope.fanBirthday,
+                gender: $scope.fanGender,
+                address: $scope.fanAddress
+            }).then(function(data) {
+                $scope.clearFilter();
+                $scope.getFans();
+            })
+        }
+    }
+
+    $scope.toPrettyDate = function(date) {
+        return new Date(date);
     }
 
     $scope.fanGender = "all";

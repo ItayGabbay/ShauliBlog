@@ -24,11 +24,14 @@
                     <input type="radio" ng-model="fanGender" value="male" />Male
                     <input type="radio" ng-model="fanGender" value="female" />Female
                     <button class="btn btn-primary" ng-click="searchFans()">Search</button>
+                    <button class="btn btn-primary" ng-click="createFan()">Create</button>
                     <button class="btn btn-secondary" ng-click="clearFilter()">Clear</button>
-                    <button class="btn btn-secondary" ng-click="createFan()">Create</button>
                 </div>
             </form>
         </div>
+    </div>
+    <div ng-repeat="error in createFanErrors">
+        <div class="create-fan-error">{{error}}</div>
     </div>
     <div class="row ">
         <div class="col-md-12 ">
