@@ -16,7 +16,6 @@ const PostSchema = new Schema(
 		writerWebsiteUrl: { type: String, default: "" },
 		publishDate: { type: Date, default: new Date() },
 		content: { type: String, default: "" },
-		image: { type: String, default: "" },
 		counter: {type: Number, default: 0 },
 		comments: {
 			type: [{ type: Schema.Types.ObjectId, ref: "Comment" }],

@@ -1,0 +1,8 @@
+<div>
+    <section>
+        <ng-map style="width:600px" zoom="6.1" center="[31, 35]">
+            <marker ng-repeat="fan in fans" position="{{fan.pos}}" on-click="showData()" ; title="{{fan.fan.firstName +  ' ' + fan.fan.lastName}}">
+            </marker>
+        </ng-map>
+    </section>
+</div>
