@@ -1,8 +1,8 @@
 'use strict';
 
-var shauli = angular.module('shauli');
+var fansClubModule = angular.module('fansClubModule');
 
-shauli.controller('FanMapController', ['$scope', '$http', 'NgMap', function($scope, $http, NgMap) {
+fansClubModule.controller('FanMapController', ['$scope', '$http', 'NgMap', function($scope, $http, NgMap) {
     $scope.drawSingleMarker = function(fan, result, geocoderStatus) {
 
         if (geocoderStatus === google.maps.GeocoderStatus.OK) {
