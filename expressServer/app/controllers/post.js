@@ -6,10 +6,15 @@ const Post = mongoose.model("Post");
  exports.index = function(req, res) {
   var query = {};
 
+  // getting start date and end date from client query
   if (req.query["startDate"] || req.query["endDate"]) {
     query.publishDate = {};
+
+    // setting publish date mongo query between start and end date
     req.query["startDate"] ?query.publishDate["$gte"] = new Date(req.query["startDate"]):null;
     req.query["endDate"]?query.publishDate["$lte"] = new Date(req.query["endDate"]):null;
+
+    console.log('query', query)
   }
   if (req.query["postWriter"]) {
     query.writer = { $regex: req.query["postWriter"], $options: "i" };
@@ -34,8 +39,7 @@ const Post = mongoose.model("Post");
     query.comments = { $size: req.query["postComments "] };
   }
 
-  console.log("query is", query);
-
+  // get comment documents from comments collection
   Post.find(query).populate("comments").exec(function(err, posts) {
     if (err) throw err;
 
@@ -61,8 +65,7 @@ exports.show = function(req, res) {
 //=============================
 // Create
 //=============================
-exports.create = function(req, res) {
-  console.log('create post',req);
+exports.create = function(req, res) { 
   new Post(req.body).save(function(err, post) {
     if (err) throw err;
 
