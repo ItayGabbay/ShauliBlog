@@ -13,8 +13,6 @@ const Post = mongoose.model("Post");
     // setting publish date mongo query between start and end date
     req.query["startDate"] ?query.publishDate["$gte"] = new Date(req.query["startDate"]):null;
     req.query["endDate"]?query.publishDate["$lte"] = new Date(req.query["endDate"]):null;
-
-    console.log('query', query)
   }
   if (req.query["postWriter"]) {
     query.writer = { $regex: req.query["postWriter"], $options: "i" };

@@ -101,30 +101,30 @@
                       </dl>
                   </article>
             </section>
-            <section id="addComment" class="comments" ng-show="post._id == addCommentToPost">          
+            <section id="addComment" class="comments" ng-show="post._id == addCommentToPost">  
+                <form name="commentForm" novalidate ng-submit="">        
               <article>
                   <dl class="dl-horizontal">
                       <dt>
-                          Title
+                          Title (*)
                       </dt>
                       <dd>
-                          <input type="text" ng-model="addComment.title">
+                          <input required type="text" ng-model="addComment.title">
                       </dd>
 
                       <dt>
-                          Writer
+                          Writer (*)
                       </dt>
                       <dd>
-                          <input type="text" ng-model="addComment.writer">
+                          <input required  type="text" ng-model="addComment.writer">
                       </dd>
 
                       <dt>
-                          Content
+                          Content (*)
                       </dt>
                       <dd>
-                          <input type="text" ng-model="addComment.content">
+                          <input required  type="text" ng-model="addComment.content">
                       </dd>
-
                       <dt>
                           Writer Website URL
                       </dt>
@@ -132,8 +132,9 @@
                           <input type="text" ng-model="addComment.writerWebsiteUrl">
                       </dd>
                   </dl>
-                  <h4 ng-click="addNewComment()" id="add-comment-action-label">Add Comment</h4>
-              </article>            
+                  <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-click="addNewComment()"  ng-disabled="commentForm.$invalid">Save</button>
+              </article>
+            </form>            
             </section>
             </article>
         </section>
