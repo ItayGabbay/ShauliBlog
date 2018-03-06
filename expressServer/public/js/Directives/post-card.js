@@ -4,12 +4,14 @@ shauli.directive('postCard', function() {
     return {
         templateUrl: '/js/Directives/post-card.html',
         scope: {
-            post: '=',
-            buttonText: '@',
-            callback: '='
+            saveCallback: '=',
+            openModalCallback: '='
         },
-        // link:  function ($scope, element, attrs) { 
-        //     debugger;
-        // } 
+        link:  function ($scope, element, attrs) { 
+            $scope.openModalCallback = function(post) {
+                $scope.post = post;
+                $(element).find('#myModal').modal("show");
+            }
+        } 
     }
 })

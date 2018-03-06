@@ -13,7 +13,6 @@ const FanScema = new Schema({
 	lastName: {type: String, default: ""},
 	gender: {type: String, default: "Not sexually defined"},
 	dateOfBirth: {type: Date, default: null},
-	yearsOfSeniority: {type: Number, default: 0},
 	address: {type: String, default: ""}
 })
 

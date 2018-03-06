@@ -35,6 +35,9 @@
                                 </div>
                             </div>
                             </section>
+        <div id="addPost">
+            <button class="btn btn-primary" ng-click="openModal()">Add new post</button>
+        </div>
         <section ng-repeat="post in posts">
             <article class="blogPost">
                 <header ng-click="getMoreDetails(post)">
@@ -49,7 +52,7 @@
                           {{post.publishDate}}                        
                         </time>
                         by
-                        <a ng-href="post.writerWebsiteUrl">{{post.writer}}</a>
+                        <a href="{{post.writerWebsiteUrl}}" target="_blank">{{post.writer}}</a>
                         -
                         <a>
                             {{post.comments.length}} comments
@@ -60,9 +63,6 @@
                     <p>
                        {{post.content}}
                     </p>
-                   <span ng-if=post.image>
-                      <img src="{{post.image}}" />
-                   </span>
                    <a ng-click="addPostComment(post)">add a comment</a>
                 </div>
                 <section class="comments" ng-show="post._id == expandedPost">
@@ -141,4 +141,4 @@
         <section>
 </div>
 
-<post-card post="editedPost" callback="addPost" button-text="Add New Post"></post-card>
+<post-card save-callback="addPost" open-modal-callback="showModal"></post-card>

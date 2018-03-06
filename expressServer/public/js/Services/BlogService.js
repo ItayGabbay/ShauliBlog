@@ -19,7 +19,7 @@ shauli.service('blogApiService', ['$http', function ($http) {
             });
         },
         addViewCounterToPost: function(postId) {
-             return $http.get(`post/${postid}`);
+             return $http.get(`post/${postId}`);
         },
         addPost: function(newPost) {
             return $http.post("post/", newPost);

@@ -27,6 +27,11 @@ $scope.getMoreDetails = function(post) {
     });
 };
 
+
+$scope.openModal = function() {
+    $scope.showModal({});
+}
+
 // setting post for adding comment 
 $scope.addPostComment = function(post) {
     $scope.addCommentToPost = post._id;
@@ -40,13 +45,10 @@ $scope.closeAndReset = function() {
     $scope.editedPost = {};
 }
 
-// add new post 
-$scope.addPost = function() {
-    // set is post input to enable
+$scope.addPost = function(post) {
     $scope.isDisable = false;
 
-    // adding new post to backend
-    blogApiService.addPost($scope.editedPost)
+    blogApiService.addPost(post)
     .then(function(res) {
         $scope.posts = res.data;
         $scope.getPosts();
@@ -59,9 +61,13 @@ $scope.addPost = function() {
 $scope.addNewComment = function() {
     // setting added comment post id
     $scope.addComment.postId = $scope.addCommentToPost;
+<<<<<<< HEAD
 
     // adding new comment to backend
     blogApiService.addComment($scope.addComment).then(()=>{
+=======
+    blogApiService.addNewComment($scope.addComment).then(()=>{
+>>>>>>> c350c41d26f9eb71c5b6120a1f2839df19c16ea5
         $scope.getPosts();
         $scope.addComment = {};
         $scope.addCommentToPost = '';

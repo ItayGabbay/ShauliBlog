@@ -26,8 +26,12 @@ adminModule.controller('AdminCtrl', ['$scope', '$window', 'adminApiService',
     $scope.closeAndReset = function() {
         $scope.editedPost = {};
     }
+
+    $scope.editPost = function(post) {
+        $scope.showModal(post);
+    }
     $scope.savePost = function(post) {
-        adminApiService.savePost()
+        adminApiService.savePost(post)
         .then(function(res) {
             $scope.getAllPosts();
         }, function (error) {
