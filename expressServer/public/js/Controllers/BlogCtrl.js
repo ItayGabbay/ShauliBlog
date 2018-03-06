@@ -61,13 +61,7 @@ $scope.addPost = function(post) {
 $scope.addNewComment = function() {
     // setting added comment post id
     $scope.addComment.postId = $scope.addCommentToPost;
-<<<<<<< HEAD
-
-    // adding new comment to backend
-    blogApiService.addComment($scope.addComment).then(()=>{
-=======
     blogApiService.addNewComment($scope.addComment).then(()=>{
->>>>>>> c350c41d26f9eb71c5b6120a1f2839df19c16ea5
         $scope.getPosts();
         $scope.addComment = {};
         $scope.addCommentToPost = '';
