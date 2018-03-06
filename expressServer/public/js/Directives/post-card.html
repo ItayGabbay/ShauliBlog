@@ -1,9 +1,6 @@
 <div>
-    <div id="addPost">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">{{buttonText}}</button>
-    </div>
     <!-- Modal -->
-  <div class="modal fade" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal fade" keyboard="false" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -36,7 +33,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="isDisable" ng-click="callback(post)">Save</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="isDisable" ng-click="saveCallback(post)">Save</button>
         </div>
       </div>
     </div>

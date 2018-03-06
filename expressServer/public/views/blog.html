@@ -35,6 +35,9 @@
                                 </div>
                             </div>
                             </section>
+        <div id="addPost">
+            <button class="btn btn-primary" ng-click="openModal()">Add new post</button>
+        </div>
         <section ng-repeat="post in posts">
             <article class="blogPost">
                 <header ng-click="getMoreDetails(post)">
@@ -138,4 +141,4 @@
         <section>
 </div>
 
-<post-card post="editedPost" callback="addPost" button-text="Add New Post"></post-card>
+<post-card save-callback="addPost" open-modal-callback="showModal"></post-card>

@@ -21,6 +21,10 @@ $scope.getMoreDetails = function(post) {
     });
 };
 
+$scope.openModal = function() {
+    $scope.showModal({});
+}
+
 $scope.addPostComment = function(post) {
     $scope.addCommentToPost = post._id;
 };
@@ -30,10 +34,10 @@ $scope.closeAndReset = function() {
     $scope.editedPost = {};
 }
 
-$scope.addPost = function() {
+$scope.addPost = function(post) {
     $scope.isDisable = false;
 
-    blogApiService.addPost($scope.editedPost)
+    blogApiService.addPost(post)
     .then(function(res) {
         $scope.posts = res.data;
         $scope.getPosts();
