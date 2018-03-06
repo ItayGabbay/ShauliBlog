@@ -1,6 +1,6 @@
 <div>
-    <!-- Modal -->
-  <div class="modal fade" keyboard="false" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <!-- Modal -->
+  <div class="modal fade" keyboard="false" my-modal id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,32 +8,32 @@
           <h4 class="modal-title" id="myModalLabel">Post Details</h4>
         </div>
         <div class="modal-body">
-          <form name="bussForm">
+          <form name="postForm" novalidate ng-submit="saveCallback(post)">
             <fieldset class="form-group" ng-disabled="isDisable">
-              <label>Title</label>
-              <input type="text" class="form-control" ng-model="post.title" placeholder="Add post title here"/>
+              <label>Title (*)</label>
+              <input type="text" required class="form-control" ng-model="post.title" placeholder="Add post title here" />
             </fieldset>
             <fieldset class="form-group" ng-disabled="isDisable">
-                <label>Writer</label>
-                <input type="text" class="form-control" ng-model="post.writer" placeholder="Add your name here"/>
+              <label>Writer (*)</label>
+              <input type="text" required class="form-control" ng-model="post.writer" placeholder="Add your name here" />
             </fieldset>
             <fieldset class="form-group" ng-disabled="isDisable">
-                <label>Publish Date</label>
-                <input type="text" class="form-control" ng-model="post.publishDate" disabled/>
+              <label>Publish Date</label>
+              <input type="text" class="form-control" ng-model="post.publishDate" disabled/>
             </fieldset>
             <fieldset class="form-group" ng-disabled="isDisable">
-                <label>Content</label>
-                <textarea rows=5 class="form-control" ng-model="post.content" placeholder="add your post here"></textarea>
+              <label>Content (*)</label>
+              <textarea rows=5 required class="form-control" ng-model="post.content" placeholder="add your post here"></textarea>
             </fieldset>
             <fieldset class="form-group" ng-disabled="isDisable">
-                <label>Writer Website url</label>
-                <input type="text" class="form-control" ng-model="post.writerWebsiteUrl" placeholder="Add your website" />
+              <label>Writer Website url</label>
+              <input type="text" class="form-control" ng-model="post.writerWebsiteUrl" placeholder="Add your website" />
             </fieldset>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset()">Close</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="isDisable" ng-click="saveCallback(post)">Save</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="postForm.$invalid">Save</button>
         </div>
       </div>
     </div>
