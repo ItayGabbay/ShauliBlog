@@ -49,7 +49,7 @@
                           {{post.publishDate}}                        
                         </time>
                         by
-                        <a ng-href="post.writerWebsiteUrl">{{post.writer}}</a>
+                        <a href="{{post.writerWebsiteUrl}}">{{post.writer}}</a>
                         -
                         <a>
                             {{post.comments.length}} comments
@@ -60,9 +60,6 @@
                     <p>
                        {{post.content}}
                     </p>
-                   <span ng-if=post.image>
-                      <img src="{{post.image}}" />
-                   </span>
                    <a ng-click="addPostComment(post)">add a comment</a>
                 </div>
                 <section class="comments" ng-show="post._id == expandedPost">

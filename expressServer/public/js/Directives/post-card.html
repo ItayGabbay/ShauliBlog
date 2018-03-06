@@ -13,49 +13,30 @@
         <div class="modal-body">
           <form name="bussForm">
             <fieldset class="form-group" ng-disabled="isDisable">
-              <label for="name">Title</label>
-              <input type="text" class="form-control" id="name" ng-model="post.title" placeholder="Add post title here">
+              <label>Title</label>
+              <input type="text" class="form-control" ng-model="post.title" placeholder="Add post title here"/>
             </fieldset>
             <fieldset class="form-group" ng-disabled="isDisable">
-                <label for="name">Writer</label>
-                <input type="text" class="form-control" id="name" ng-model="post.writer" placeholder="Add post writer here">
-              </fieldset>
-              <fieldset class="form-group" ng-disabled="isDisable">
-                  <label for="name">Publish Date</label>
-                  <input type="text" class="form-control" id="name" ng-model="post.publishDate" disabled>
-                </fieldset>
-                <fieldset class="form-group" ng-disabled="isDisable">
-                    <label for="name">Content</label>
-                    <input type="text" class="form-control" id="name" ng-model="post.content" placeholder="add your post here">
-                  </fieldset>
-                  <fieldset class="form-group" ng-disabled="isDisable">
-                      <label for="name">Post Comments</label>
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th scope="col">Title</th>
-                          <th scope="col">posted by</th>
-                          <th scope="col">writer webSiteURL</th>
-                          <th scope="col">content</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr ng-repeat="comment in post.comments">
-                          
-                          <td>{{comment.title}}</td>
-                          <td>{{comment.writer}}</td>
-                          <td>{{comment.writerWebsiteUrl}}</td>
-                          <td>{{comment.content}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </fieldset>
-                  </form>
+                <label>Writer</label>
+                <input type="text" class="form-control" ng-model="post.writer" placeholder="Add your name here"/>
+            </fieldset>
+            <fieldset class="form-group" ng-disabled="isDisable">
+                <label>Publish Date</label>
+                <input type="text" class="form-control" ng-model="post.publishDate" disabled/>
+            </fieldset>
+            <fieldset class="form-group" ng-disabled="isDisable">
+                <label>Content</label>
+                <textarea rows=5 class="form-control" ng-model="post.content" placeholder="add your post here"></textarea>
+            </fieldset>
+            <fieldset class="form-group" ng-disabled="isDisable">
+                <label>Writer Website url</label>
+                <input type="text" class="form-control" ng-model="post.writerWebsiteUrl" placeholder="Add your website" />
+            </fieldset>
+          </form>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset()">Close</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="isDisable" ng-click="callback(post)">Save</button>
-        </div>
-        </form>
         </div>
       </div>
     </div>

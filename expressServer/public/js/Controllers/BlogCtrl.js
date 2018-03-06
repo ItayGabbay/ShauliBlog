@@ -44,7 +44,7 @@ $scope.addPost = function() {
 
 $scope.addNewComment = function() {
     $scope.addComment.postId = $scope.addCommentToPost;
-    blogApiService.addComment($scope.addComment).then(()=>{
+    blogApiService.addNewComment($scope.addComment).then(()=>{
         $scope.getPosts();
         $scope.addComment = {};
         $scope.addCommentToPost = '';

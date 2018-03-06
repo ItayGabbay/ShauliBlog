@@ -6,7 +6,8 @@ shauli.directive('postCard', function() {
         scope: {
             post: '=',
             buttonText: '@',
-            callback: '='
+            callback: '=',
+            isNew: '@?'
         },
         // link:  function ($scope, element, attrs) { 
         //     debugger;
