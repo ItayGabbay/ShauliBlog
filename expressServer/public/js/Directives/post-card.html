@@ -8,7 +8,7 @@
           <h4 class="modal-title" id="myModalLabel">Post Details</h4>
         </div>
         <div class="modal-body">
-          <form name="postForm" novalidate ng-submit="saveCallback(post)">
+          <form name="postForm" novalidate>
             <fieldset class="form-group" ng-disabled="isDisable">
               <label>Title (*)</label>
               <input type="text" required class="form-control" ng-model="post.title" placeholder="Add post title here" />
@@ -33,7 +33,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeAndReset()">Close</button>
-          <button type="submit" class="btn btn-primary" data-dismiss="modal" ng-disabled="postForm.$invalid">Save</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="postForm.$invalid" ng-click="saveCallback(post)">Save</button>
         </div>
       </div>
     </div>

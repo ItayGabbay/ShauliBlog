@@ -42,6 +42,7 @@ shauli.controller('FBController', ['$scope', function($scope) {
             }, function (response) { });
         }
     }
+    // Register to the rootscope event, when the youtube API is ready
     $scope.$on('youtubeLoaded', function(event) {
         loadYTVideos($scope);
     })

@@ -2,6 +2,37 @@ body {
     padding-top: 54px;
 }
 
+.card-text {
+  -webkit-column-count: 2;
+  -webkit-column-gap: 22px;
+}
+
+@font-face {
+	font-family: 'Lobster'; 
+    src: url(https://fonts.gstatic.com/s/lobster/v18/cycBf3mfbGkh66G5NhszPQ.woff2); 
+}
+
+.navbar-brand {
+  transition: all 2s ease-in-out, margin-top 0ms linear;
+  -webkit-transition: all 2s ease-in-out, margin-top 0ms linear;
+  font-family: 'Lobster';
+}
+
+.navbar-brand:hover {
+  -webkit-transform: rotate(720deg) scale(2, 2);
+  -moz-transform: rotate(720deg) scale(2, 2);
+  -ms-transform: rotate(720deg) scale(2, 2);
+  transform: rotate(720deg) scale(2, 2);
+}
+
+small {
+  text-shadow: 3px 3px #DDDDDD;
+}
+
+.modal-content {
+  border-radius: 10px;
+}
+
 @media (min-width: 992px) {
     body {
         padding-top: 56px;
