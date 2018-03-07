@@ -26,6 +26,9 @@ shauli.service('blogApiService', ['$http', function ($http) {
         },
         addNewComment: function(newComment) {
             return $http.post('comment/', newComment);
+        },
+        getTopPosts: function() {
+            return $http.get('/post/GetTopPosts');
         }
     }
 }]);
