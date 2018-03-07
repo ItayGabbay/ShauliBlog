@@ -44,6 +44,7 @@ shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout)
             paint = false;
         });
 
+        // Registering to events of colors
         $('#choosePurple').mousedown (function (event) {
             curColor = colorPurple;
             curTool = "no";
@@ -65,7 +66,7 @@ shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout)
         });
     })
     
-
+    // A click was indicated
     function addClick(x, y, dragging, clickX, clickY, clickDrag, clickColor, curTool, curColor, colorGray) {
         clickX.push(x);
         clickY.push(y);
@@ -76,6 +77,7 @@ shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout)
             clickColor.push(curColor);
         }
     }
+    // Redrawing after a click/drag
     function redraw(clickX, clickY, clickDrag, clickColor, context) {
         
         context.lineJoin = "round";
