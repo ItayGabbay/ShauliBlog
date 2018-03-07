@@ -69,6 +69,9 @@ $scope.addNewComment = function() {
     });
 }
 
+
+$scope.pageClass = "page-blog"
+
 // first intialize posts data
 $scope.getPosts();
     

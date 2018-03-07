@@ -1,9 +1,170 @@
 body {
-  padding-top: 54px;
+    padding-top: 54px;
 }
 
 @media (min-width: 992px) {
-  body {
-    padding-top: 56px;
-  }
+    body {
+        padding-top: 56px;
+    }
+}
+
+.page {
+    bottom: 0;
+    padding-top: 50px;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+    margin-bottom: -50px;
+    overflow-y: auto;
+    padding-bottom: 100px;
+}
+
+h1 {
+    text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+    0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+}
+
+.newspaper {
+    column-count: 3;
+    column-width: 100px;
+}
+
+.roundedCard
+{
+	border-radius: 100px;
+}
+
+footer {
+  position:  absolute;
+  bottom: 0;
+  z-index: 100000;
+  width: 100%;
+}
+
+
+/* ANIMATIONS
+============================================================================= */
+
+
+/* leaving animations ----------------------------------------- */
+
+
+/* rotate and fall */
+
+@keyframes rotateFall {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    20% {
+        transform: rotateZ(10deg);
+        animation-timing-function: ease-out;
+    }
+    40% {
+        transform: rotateZ(17deg);
+    }
+    60% {
+        transform: rotateZ(16deg);
+    }
+    100% {
+        transform: translateY(100%) rotateZ(17deg);
+    }
+}
+
+
+
+/* slide in from the bottom */
+
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+
+
+/* rotate out newspaper */
+
+@keyframes rotateOutNewspaper {
+    to {
+        transform: translateZ(-3000px) rotateZ(360deg);
+        opacity: 0;
+    }
+}
+
+
+
+
+/* entering animations --------------------------------------- */
+
+
+/* scale up */
+
+@keyframes scaleUp {
+    from {
+        opacity: 0.3;
+        -webkit-transform: scale(0.8);
+    }
+}
+
+
+
+
+/* slide in from the right */
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.ng-enter {
+    animation: scaleUp 0.5s both ease-in;
+    z-index: 8888;
+}
+
+.ng-leave {
+    animation: slideOutLeft 0.5s both ease-in;
+    z-index: 9999;
+}
+
+.page-blog.ng-enter {
+    animation: scaleUp 0.5s both ease-in;
+}
+
+.page-blog.ng-leave {
+    transform-origin: 0% 0%;
+    animation: rotateFall 1s both ease-in;
+}
+
+
+.page-fanmap.ng-enter {
+    animation: slideInRight 0.5s both ease-in;
+}
+
+.page-fanmap.ng-leave {
+    animation: slideOutLeft 0.5s both ease-in;
+}
+
+.page-fan.ng-leave {
+    transform-origin: 50% 50%;
+    animation: rotateOutNewspaper .5s both ease-in;
+}
+
+.page-fan.ng-enter {
+    animation: slideInUp 0.5s both ease-in;
 }

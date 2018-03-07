@@ -87,4 +87,6 @@ shauli.controller('FBController', ['$scope', function($scope) {
     }
 
     loadYTVideos($scope)
+
+    $scope.pageClass ="page-FB"
 }]) 
