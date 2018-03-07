@@ -76,15 +76,6 @@ shauli.controller('PaintCtrl', ['$scope', '$timeout', function($scope, $timeout)
             clickColor.push(curColor);
         }
     }
-    $scope.download = function() {
-        var image = canvas[0].toDataURL("image/png");
-        var download = $('<a/>')[0];
-        download.href = image;
-        download.download = 'image.png';
-        download.click();
-        // delete download;
-        // delete image;
-    }
     function redraw(clickX, clickY, clickDrag, clickColor, context) {
         
         context.lineJoin = "round";
