@@ -1,3 +1,8 @@
+/**
+ * This Controller manages all the admin interface in the blog.
+ * It requires a login cookie
+ * Can edit & delete post (using web sockets) and show statistical data about the blog.
+ */
 'use strict';
 var adminModule = angular.module('adminModule', []);
 
