@@ -59,11 +59,11 @@
                     </div>
                 </div>
                 <p>
-                    <button class="btn btn-link mx-auto" type="button" data-toggle="collapse" data-target="#commentsCollapse" aria-expanded="false">
+                    <button class="btn btn-link mx-auto" type="button" data-toggle="collapse"  ng-show="post.comments.length" data-target="#commentsCollapse{{post._id}}" aria-expanded="false">
                         Show Comments
                     </button>
                 </p>
-                <div class="collapse" id="commentsCollapse">
+                <div class="collapse" id="commentsCollapse{{post._id}}">
                     <div class="card card-body">
                         <article ng-repeat="comment in post.comments">
                             <dl class="dl-horizontal">
