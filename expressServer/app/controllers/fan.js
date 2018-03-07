@@ -65,6 +65,7 @@ res.sendStatus(403);
 }
 
 exports.create = function (req, res) {
+	// Creating fan by mode
 	new Fans(req.body).save(function (err, fan) {
 		if (err) throw err;
 		res.send(fan);
@@ -72,8 +73,13 @@ exports.create = function (req, res) {
 }
 
 exports.search = function (req, res) {
+	// gEtting fan to filter by from request
 	let fan = req.body;
+
+	// Initializind empty query object
 	let query = {};
+
+	// Checking which fields should be included in query
 	if (fan.firstName) {
 		query.firstName = fan.firstName;
 	}
@@ -94,6 +100,7 @@ exports.search = function (req, res) {
 		query.address = fan.address;
 	}
 
+	// Executing query with filter
 	Fans.find(query, function (err, res) {
 		if (err) throw err;
 
@@ -102,8 +109,10 @@ exports.search = function (req, res) {
 }
 
 exports.edit = function (req, res) {
+	// Getting id from request
 	var id = req.params.id;
 
+	// executing uodate query
 	Fans.findOneAndUpdate({ _id: id }, req.body, function(err, fan) {
 		if (err) throw err;
 
@@ -112,8 +121,10 @@ exports.edit = function (req, res) {
 }
 
 exports.delete = function(req, res) {
+	// Getting id
 	var id = req.params.id;
   
+	// Deleting
 	Fans.remove({ _id: id }, function(err) {
 	  if (err) throw err;
   
