@@ -1,78 +1,88 @@
 <div class="container">
     <div class="row">
+        <!-- Blog Entries Column -->
         <div class="col-md-8">
-            <form class="form-horizontal">
-                <div class="form-group col-md-6">
-                    <label>first name</label>
-                    <input type="text" ng-model="fanFirstName" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>last name</label>
-                    <input type="text" ng-model="fanLastName" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>adress</label>
-                    <input type="text" ng-model="fanAddress" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>birdthay</label>
-                    <input type="date" ng-model="fanBirthday" />
-                </div>
-                <div class="form-group col-md-6">
-                    <label>gender</label>
-                    <input type="radio" ng-model="fanGender" value="all" />All genders                    
-                    <input type="radio" ng-model="fanGender" value="male" />Male
-                    <input type="radio" ng-model="fanGender" value="female" />Female
-                    <button class="btn btn-primary" ng-click="searchFans()">Search</button>
-                    <button class="btn btn-primary" ng-click="createFan()">Create</button>
-                    <button class="btn btn-secondary" ng-click="clearFilter()">Clear</button>
-                </div>
-            </form>
+            <h1 class="my-4">Fans
+            <small>manage fans</small>
+          </h1>
+            <div ng-repeat="error in createFanErrors">
+                <div class="create-fan-error">{{error}}</div>
+            </div>
+            <table class="table ">
+                <tr>
+                    <th>
+                        first name
+                    </th>
+                    <th>
+                        last name
+                    </th>
+                    <th>
+                        gender
+                    </th>
+                    <th>
+                        date of birth
+                    </th>
+                    <th>
+                        address
+                    </th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in fans">
+                    <td>
+                        {{ item.firstName }}
+                    </td>
+                    <td>
+                        {{ item.lastName }}
+                    </td>
+                    <td>
+                        {{ item.gender }}
+                    </td>
+                    <td>
+                        {{ toPrettyDate(item.dateOfBirth) }}
+                    </td>
+                    <td>
+                        {{ item.address }}
+                    </td>
+                </tr>
+            </table>
         </div>
-    </div>
-    <div ng-repeat="error in createFanErrors">
-        <div class="create-fan-error">{{error}}</div>
-    </div>
-    <div class="row ">
-        <div class="col-md-12 ">
-                <table class="table ">
-                    <tr>
-                        <th>
-                            first name
-                        </th>
-                        <th>
-                            last name
-                        </th>
-                        <th>
-                            gender
-                        </th>
-                        <th>
-                            date of birth
-                        </th>
-                        <th>
-                            address
-                        </th>
-                        <th></th>
-                    </tr>
-                    <tr ng-repeat="item in fans">
-                        <td>
-                            {{ item.firstName }}
-                        </td>
-                        <td>
-                            {{ item.lastName }}
-                        </td>
-                        <td>
-                            {{ item.gender }}
-                        </td>
-                        <td>
-                            {{  toPrettyDate(item.dateOfBirth) }}
-                        </td>
-                        <td>
-                            {{ item.address }}
-                        </td>
-                    </tr>
-                </table>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="fanFirstName">first name</label>
+                            <input type="text" class="form-control" ng-model="fanFirstName" id="fanFirstName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fanLastName">last name</label>
+                            <input type="text" class="form-control" ng-model="fanLastName" id="fanLastName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fanAddress">address</label>
+                            <input type="text" class="form-control" ng-model="fanAddress" id="fanAddress" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fanBirthday">birdthay</label>
+                            <input type="date" class="form-control" ng-model="fanBirthday" id="fanBirthday" />
+                        </div>
+                        <div class="form-group">
+                            <label>gender</label>
+                            <input type="radio" ng-model="fanGender" value="all" />All genders
+                            <input type="radio" ng-model="fanGender" value="male" />Male
+                            <input type="radio" ng-model="fanGender" value="female" />Female
+                        </div>
+                        <button class="btn btn-primary" ng-click="searchFans()">Search</button>
+                        <button class="btn btn-primary" ng-click="createFan()">Create</button>
+                        <button class="btn btn-secondary" ng-click="clearFilter()">Clear</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    <!-- /.row -->
 </div>
+<!-- /.container -->
