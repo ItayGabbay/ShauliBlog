@@ -72,6 +72,9 @@ $scope.getTopPosts = function() {
     });
 }
 
+
+$scope.pageClass = "page-blog"
+
 // first intialize posts data
 $scope.getPosts();
 $scope.getTopPosts();

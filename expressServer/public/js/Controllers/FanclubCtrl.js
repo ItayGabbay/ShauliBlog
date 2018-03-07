@@ -2,8 +2,8 @@
 
 var fansClubModule = angular.module('fansClubModule', []);
 
-fansClubModule.controller('FansClubController', ['$scope', '$http', 'fansClubService',  
-function($scope, $http, fansClubService) {
+fansClubModule.controller('FansClubController', ['$scope', '$http', 'fansClubService',
+    function($scope, $http, fansClubService) {
 
     $scope.searchFans = function() {
         // Checking if birthday value exists 
@@ -71,14 +71,14 @@ function($scope, $http, fansClubService) {
             $scope.createFanErrors.push("Gender must be male or female, sorry");
         }
 
-        if ($scope.fanBirthday) {
+        if (!$scope.fanBirthday) {
+            $scope.createFanErrors.push("Date is mandatory");
+        } else {
             $scope.fanBirthday = new Date($scope.fanBirthday);
-            $scope.fanBirthday.setHours(0,0,0,0);
+            $scope.fanBirthday.setHours(0, 0, 0, 0);
         }
 
-        // Checkning that there were no errors
         if ($scope.createFanErrors.length === 0) {
-            // Creating fan using service
             fansClubService.createFan({
                 firstName: $scope.fanFirstName,
                 lastName: $scope.fanLastName,
@@ -86,8 +86,8 @@ function($scope, $http, fansClubService) {
                 gender: $scope.fanGender,
                 address: $scope.fanAddress
             }).then(function(data) {
-                // after creation clearing fans
                 $scope.clearFilter();
+                $scope.getFans();
             })
         }
     }
@@ -96,9 +96,9 @@ function($scope, $http, fansClubService) {
     $scope.toPrettyDate = function(date) {
         return date ? new Date(date).toLocaleDateString() : '';
     }
-
-    // Initilizing data
     $scope.fanGender = "all";
     $scope.getFans();
-    
-}])
+    $scope.pageClass = "page-fan"
+
+    }
+])

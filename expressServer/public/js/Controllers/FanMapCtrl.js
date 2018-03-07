@@ -54,6 +54,8 @@ fansClubModule.controller('FanMapController', ['$scope', '$http', 'NgMap', funct
 
     }
 
+    $scope.pageClass = "page-fanmap";
+
     $scope.fans = [];
     $scope.fanGender = "male";
     $scope.drawFansOnMap();
