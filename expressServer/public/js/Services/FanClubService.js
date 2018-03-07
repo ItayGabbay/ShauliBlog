@@ -1,3 +1,6 @@
+/**
+ * This Service is responsible for making the requests of the fan club module.
+ */
 'use strict';
 
 var fansClubModule = angular.module('fansClubModule');
