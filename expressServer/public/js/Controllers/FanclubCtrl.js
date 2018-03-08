@@ -94,7 +94,7 @@ function($scope, $http, fansClubService) {
 
     // View uses this function to display date in proper way
     $scope.toPrettyDate = function(date) {
-        return new Date(date).toLocaleDateString();
+        return date ? new Date(date).toLocaleDateString() : '';
     }
 
     // Initilizing data
