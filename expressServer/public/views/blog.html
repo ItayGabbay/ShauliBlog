@@ -91,7 +91,7 @@
                                     Writer Website URL
                                 </dt>
                                 <dd>
-                                    <a ng-href="comment.writerWebSiteUrl)">
+                                    <a href="{{comment.writerWebsiteUrl}}" target="_blank">
                                   {{comment.writerWebsiteUrl}}
                               </a>
                                 </dd>
@@ -101,87 +101,89 @@
                 </div>
             </div>
         </div>
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <form class="form" role="form">
-                        <div class="form-group">
-                            <label>Start Date</label>
-                            <input type="date" class="form-control" name="StartDate" ng-model="startDate" />
-                        </div>
-                        <div class="form-group">
-                            <label>End Date</label>
-                            <input type="date" class="form-control" name="EndDate" ng-model="endDate" />
-                        </div>
-                        <div class="form-group">
-                            <label for="contain">Post Writer</label>
-                            <input class="form-control" class="form-control" type="text" ng-model="searchedwriter" name="PostWriter" />
-                        </div>
-                        <div class="form-group">
-                            <label for="contain">Title</label>
-                            <input class="form-control" class="form-control" ng-model="searchedtitle" type="text" name="PostTitle" />
-                        </div>
-                        <div class="form-group">
-                            <label for="contain">Post content</label>
-                            <input class="form-control" class="form-control" ng-model="searchedcontent" type="text" name="PostContent" />
-                        </div>
-                        <div class="form-group">
-                            <label for="contain">Writer website URL</label>
-                            <input class="form-control" type="text" ng-model="searchedwriterWebsiteUrl" name="PostWriterWebsiteURL" />
-                        </div>
-                        <button type="button" class="btn btn-primary" ng-click="getPosts()">Search
-                        </button>
-                        <button class="btn btn-primary" ng-click="openModal()">Add new post</button>
-                    </form>
+        <aside class="col-md-4">
+            <!-- Sidebar Widgets Column -->
+            <div >
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <form class="form" role="form">
+                            <div class="form-group">
+                                <label>Start Date</label>
+                                <input type="date" class="form-control" name="StartDate" ng-model="startDate" />
+                            </div>
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <input type="date" class="form-control" name="EndDate" ng-model="endDate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contain">Post Writer</label>
+                                <input class="form-control" class="form-control" type="text" ng-model="searchedwriter" name="PostWriter" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contain">Title</label>
+                                <input class="form-control" class="form-control" ng-model="searchedtitle" type="text" name="PostTitle" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contain">Post content</label>
+                                <input class="form-control" class="form-control" ng-model="searchedcontent" type="text" name="PostContent" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contain">Writer website URL</label>
+                                <input class="form-control" type="text" ng-model="searchedwriterWebsiteUrl" name="PostWriterWebsiteURL" />
+                            </div>
+                            <button type="button" class="btn btn-primary" ng-click="getPosts()">Search
+                            </button>
+                            <button class="btn btn-primary" ng-click="openModal()">Add new post</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
-                            </ul>
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Web Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">HTML</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Freebies</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">JavaScript</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">CSS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Tutorials</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
-                            </ul>
+                    </div>
+                </div>
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Recommended Posts</h5>
+                    <div class="card-body">
+                        <div ng-repeat="topPost in topPosts">
+                            {{topPost.title}}
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Recommended Posts</h5>
-                <div class="card-body">
-                    <div ng-repeat="topPost in topPosts">
-                        {{topPost.title}}
-                    </div>
-                </div>
-            </div>
-        </div>
+        </aside>
     </div>
     <!-- /.row -->
 </div>
