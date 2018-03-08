@@ -1,3 +1,6 @@
+/**
+ * This Service is responsible for making the requests of the admin module.
+ */
 'use strict';
 
 var adminModule = angular.module('adminModule');
@@ -7,6 +10,7 @@ adminModule.service('adminApiService', ['$http', function ($http) {
        getPostsCountByWriter: function() {
            return $http.get("post/getPostsCountByWriter");
        },
+       /** Returns the posts title and their views */
        getPostStats: function() {
            return $http.get("/post/getPostStats");
        },

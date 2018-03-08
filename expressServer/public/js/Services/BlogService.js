@@ -2,6 +2,11 @@
 
 var shauli = angular.module('shauli');
 
+/**
+ * This Service is responsible for making the requests of the blog module.
+ */
+'use strict';
+
 shauli.service('blogApiService', ['$http', function ($http) {
     return {
         getPosts: function(filters) {
@@ -18,6 +23,7 @@ shauli.service('blogApiService', ['$http', function ($http) {
                 }  
             });
         },
+        /** Add a view to a specific post for statistics */
         addViewCounterToPost: function(postId) {
              return $http.get(`post/${postId}`);
         },
@@ -26,6 +32,10 @@ shauli.service('blogApiService', ['$http', function ($http) {
         },
         addNewComment: function(newComment) {
             return $http.post('comment/', newComment);
+        },
+        /** returns most viewed posts */
+        getTopPosts: function() {
+            return $http.get('/post/GetTopPosts');
         }
     }
 }]);

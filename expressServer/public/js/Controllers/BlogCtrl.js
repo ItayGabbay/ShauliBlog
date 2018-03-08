@@ -19,8 +19,6 @@ $scope.getPosts = function() {
 
 // showing more details for speific post 
 $scope.getMoreDetails = function(post) {
-    $scope.expandedPost = post._id;
-
     // increasing post view count
    blogApiService.addViewCounterToPost(post._id).then(undefined, function (error) {
         console.log(error)
@@ -65,11 +63,19 @@ $scope.addNewComment = function() {
         $scope.getPosts();
         $scope.addComment = {};
         $scope.addCommentToPost = '';
-        $scope.expandedPost = '';
     });
 }
 
+$scope.getTopPosts = function() {
+    blogApiService.getTopPosts().then(function (res) {
+        $scope.topPosts = res.data;
+    });
+}
+
+
+$scope.pageClass = "page-blog"
+
 // first intialize posts data
 $scope.getPosts();
-    
+$scope.getTopPosts();
 }])

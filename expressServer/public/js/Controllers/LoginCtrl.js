@@ -8,6 +8,7 @@ function($scope, adminApiService, $window) {
 
     $scope.submitLogin = function() {
         adminApiService.login($scope.user).then(function(res) {
+            // IF the login was succeded - redirect to the admin page.
             $window.location.href = '#/admin'
         }, function(err) {
           console.log(err);  
